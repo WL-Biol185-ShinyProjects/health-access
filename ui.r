@@ -1,5 +1,6 @@
 library(shiny)
 install.packages("shinydashboard")
+library(shinydashboard)
 fluidPage(
   sidebarLayout(
     mainPanel(
