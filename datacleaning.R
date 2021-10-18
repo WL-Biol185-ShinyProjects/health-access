@@ -13,13 +13,15 @@ renamed<-
     num_primary_cp = `# Primary Care Physicians`, 
     rate_primary_cp = `Primary Care Physicians Rate`, 
     ratio_primary_cp = `Primary Care Physicians Ratio`) 
+renamed$num_ratio_primary_cp<-as.numeric(substring(renamed$ratio_primary_cp, 1, nchar(renamed$ratio_primary_cp) -2))
 #state averages 
 renamed %>%
   group_by(state) %>%
   summarise(mean_preventable_hr_by_state = mean(preventable_hr, na.rm = TRUE), 
             mean_pct_unins_by_state = mean(pct_uninsured, na.rm = TRUE),
             mean_num_primary_cp_by_state = mean(num_primary_cp, na.rm = TRUE),
-            mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE)) 
-glimpse(renamed)
-  
+            mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE),
+            mean_ratio_primary_cp = mean(num_ratio_primary_cp)) 
+
+glimpse(renamed)  
 
