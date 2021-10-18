@@ -24,6 +24,6 @@ renamed %>%
             mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE),
             mean_ratio_primary_cp = mean(num_ratio_primary_cp)) 
 
-glimpse(renamed)  
+
 
 
