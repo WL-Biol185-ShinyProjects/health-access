@@ -13,7 +13,13 @@ renamed<-
     num_primary_cp = `# Primary Care Physicians`, 
     rate_primary_cp = `Primary Care Physicians Rate`, 
     ratio_primary_cp = `Primary Care Physicians Ratio`) 
+#state averages 
+bystate<- group_by(.renamed, state)
+bystate<-summarise(mean_preventable_hr_by_state = mean(preventable_hr, na.rm = TRUE), 
+            mean_pct_unins_by_state = mean(pct_uninsured, na.rm = TRUE),
+            mean_num_primary_cp_by_state = mean(num_primary_cp, na.rm = TRUE),
+            mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE)) 
 
-  
+
   
 
