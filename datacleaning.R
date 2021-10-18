@@ -22,7 +22,7 @@ renamed %>%
             mean_pct_unins_by_state = mean(pct_uninsured, na.rm = TRUE),
             mean_num_primary_cp_by_state = mean(num_primary_cp, na.rm = TRUE),
             mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE),
-            mean_ratio_primary_cp = mean(num_ratio_primary_cp)) 
+            mean_ratio_primary_cp = mean(num_ratio_primary_cp, na.rm = TRUE)) 
 
 
 
