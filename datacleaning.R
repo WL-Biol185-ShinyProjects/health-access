@@ -3,8 +3,9 @@ library(dplyr)
 library(tidyverse)
 library(stargazer)
 ranked_measure <- read_excel("countyhealthrankings_rankedmeasureonly.xlsx", sheet = "Ranked Measure Data", skip = 1)
-limited_data <- ranked_measure[c('FIPS', 'State', 'County', 'Preventable Hospitalization Rate', '% Uninsured', '# Primary Care Physicians', 'Primary Care Physicians Rate', 'Primary Care Physicians Ratio' )]
-glimpse(limited_data)
+limited_data <- ranked_measure[c('FIPS', 'State', 'County', 'Preventable Hospitalization Rate', '% Uninsured', '# Primary Care Physicians', 'Primary Care Physicians Rate', 'Primary Care Physicians Ratio', '% Adults with Obesity')]
+view(limited_data)
+class(limited_data$`% Adults with Obesity`)
 renamed<-
   rename(limited_data, 
     state = State,
@@ -14,8 +15,10 @@ renamed<-
     num_primary_cp = `# Primary Care Physicians`, 
     rate_primary_cp = `Primary Care Physicians Rate`, 
     ratio_primary_cp = `Primary Care Physicians Ratio`,
-    ratio_primary_cp = `Primary Care Physicians Ratio`) 
+    ratio_primary_cp = `Primary Care Physicians Ratio`,
+    adult_obesity = `% Adults with Obesity`)
 renamed$num_ratio_primary_cp<-as.numeric(substring(renamed$ratio_primary_cp, 1, nchar(renamed$ratio_primary_cp) -2))
+glimpse(renamed)
 #state averages 
 bystate<- renamed %>%
   group_by(state) %>%
@@ -23,7 +26,8 @@ bystate<- renamed %>%
             mean_pct_unins_by_state = mean(pct_uninsured, na.rm = TRUE),
             mean_num_primary_cp_by_state = mean(num_primary_cp, na.rm = TRUE),
             mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE),
-            mean_ratio_primary_cp = mean(num_ratio_primary_cp, na.rm = TRUE))
+            mean_ratio_primary_cp = mean(num_ratio_primary_cp, na.rm = TRUE), 
+            mean_adult_obesity = mean(pct_adult_obesity, na.rm = TRUE))
 bystate
 national_preventable_hr<- mean(bystate$mean_preventable_hr_by_state)
 national_pct_unins<- mean(bystate$mean_pct_unins_by_state)
