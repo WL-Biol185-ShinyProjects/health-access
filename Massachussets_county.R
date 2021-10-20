@@ -1,20 +1,14 @@
 library(leaflet) 
-library(tidyverse) 
 library(htmltools)
 library(rgdal)
+library(tidyverse)
 
-nationwideGEO <- 
+countiesGEO <- rgdal::readOGR("US_Counties.json")
+statesGEO <- rgdal::readOGR("US_States.json")
 
-# Get Data
-nationwideGEO <- rgdal::readOGR("states.geo.json")
-
-uninsuredData <- data.frame( "_____ ",
-                             stringsAsFactors = FALSE)
-
-uninsuredData$popupText <- paste(strong("State:"), uninsuredData$place, br(), 
-                                 strong("Population:"), uninsuredData$population, br(), 
-                                 strong("Uninsured Patients"), uninsuredData$mean_pct_uninsured)
-
-nationwideGEO@data <-
-  nationwideGEO@data %>%
-  left_join(uninsiredData, by = c("Name" = "place"))
+Massachussetts <- 
+  
+  leaflet(countiesGEO) %>%
+  setView(-98.483330, 38.712046, 4) %>% 
+  addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
+              opacity = 1.0, fillOpacity = 0.5)
