@@ -29,6 +29,6 @@ national_pct_unins<- mean(bystate$mean_pct_unins_by_state)
 national_num_primary_cp<- mean(bystate$mean_num_primary_cp_by_state)
 national_rate_primary_cp<- mean(bystate$mean_rate_primary_cp_by_state)
 national_ratio_primary_cp<- mean(bystate$mean_ratio_primary_cp)
-
+lm(preventable, data = renamed)
 
 
