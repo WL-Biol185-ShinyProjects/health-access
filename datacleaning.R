@@ -12,26 +12,23 @@ renamed<-
     pct_uninsured = `% Uninsured`, 
     num_primary_cp = `# Primary Care Physicians`, 
     rate_primary_cp = `Primary Care Physicians Rate`, 
-<<<<<<< HEAD
-=======
     ratio_primary_cp = `Primary Care Physicians Ratio`,
->>>>>>> 4339db46f7f60bef68d3474b04b603beabdb31c1
     ratio_primary_cp = `Primary Care Physicians Ratio`) 
 renamed$num_ratio_primary_cp<-as.numeric(substring(renamed$ratio_primary_cp, 1, nchar(renamed$ratio_primary_cp) -2))
 #state averages 
-renamed %>%
+bystate<- renamed %>%
   group_by(state) %>%
   summarise(mean_preventable_hr_by_state = mean(preventable_hr, na.rm = TRUE), 
             mean_pct_unins_by_state = mean(pct_uninsured, na.rm = TRUE),
             mean_num_primary_cp_by_state = mean(num_primary_cp, na.rm = TRUE),
             mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE),
-            mean_ratio_primary_cp = mean(num_ratio_primary_cp, na.rm = TRUE)) 
+            mean_ratio_primary_cp = mean(num_ratio_primary_cp, na.rm = TRUE))
+bystate
+national_preventable_hr<- mean(bystate$mean_preventable_hr_by_state)
+national_pct_unins<- mean(bystate$mean_pct_unins_by_state)
+national_num_primary_cp<- mean(bystate$mean_num_primary_cp_by_state)
+national_rate_primary_cp<- mean(bystate$mean_rate_primary_cp_by_state)
+national_ratio_primary_cp<- mean(bystate$mean_ratio_primary_cp)
 
 
-
-<<<<<<< HEAD
-glimpse(renamed)  
-
-=======
->>>>>>> 4339db46f7f60bef68d3474b04b603beabdb31c1
 
