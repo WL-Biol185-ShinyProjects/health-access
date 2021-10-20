@@ -7,14 +7,21 @@ library(tidyverse)
 
 function(input, output) {
  
-  countiesGEO <- rgdal::readOGR("Counties.json")
-  statesGEO <- rgdal::readOGR("states.geo.json")
+#Importing GeoSpatial Data
+  countiesGEO <- rgdal::readOGR("counties.json")
 
+#Trim data table for counties 
+  Massachussetts <- 25
+  
+  geo@data <- geo@data[which(geo@data$STATE == 25)]
+  geo@polygons[which(geo@data$STATE != 25)] <- NULL
+  
+#Output function for Massachussetts state & county map
   output$massachussetsMap <- renderLeaflet({
-    leaflet(countiesGEO) %>%
-      addTiles() %>%
-  setView(-98.483330, 38.712046, 4) %>% 
-  addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
+    leaflet(counties.json) %>%
+    addTiles() %>%
+    setView(-71.3824,42.4072, zoom = 10) %>% 
+    addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
               opacity = 1.0, fillOpacity = 0.5)
 })
   }

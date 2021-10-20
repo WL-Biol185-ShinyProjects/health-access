@@ -3,8 +3,11 @@ library(shinydashboard)
 library(leaflet) 
 library(tidyverse)
 
+# Dashboard outline for app 
 dashboardPage(
   dashboardHeader(title = "Health Care Access"),
+
+# Code for side tabs
   dashboardSidebar(
     sidebarMenu( 
       menuItem("Welcome", tabName = "Welcome"),
@@ -15,6 +18,7 @@ dashboardPage(
     )
   ),
   
+#Code for what each tab contains
   dashboardBody(
     tabItems(
       # First tab content
