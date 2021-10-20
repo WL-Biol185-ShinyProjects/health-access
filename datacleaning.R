@@ -12,12 +12,6 @@ renamed<-
     pct_uninsured = `% Uninsured`, 
     num_primary_cp = `# Primary Care Physicians`, 
     rate_primary_cp = `Primary Care Physicians Rate`, 
-<<<<<<< HEAD
-    ratio_primary_cp = `Primary Care Physicians Ratio`
-  )
-glimpse(limited_data)
-view(limited_data)
-=======
     ratio_primary_cp = `Primary Care Physicians Ratio`) 
 renamed$num_ratio_primary_cp<-as.numeric(substring(renamed$ratio_primary_cp, 1, nchar(renamed$ratio_primary_cp) -2))
 #state averages 
@@ -30,5 +24,5 @@ renamed %>%
             mean_ratio_primary_cp = mean(num_ratio_primary_cp)) 
 
 glimpse(renamed)  
->>>>>>> acefcd38e5539357fec4c9160d609486f68f34f9
+
 

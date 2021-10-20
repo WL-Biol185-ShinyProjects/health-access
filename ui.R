@@ -1,5 +1,7 @@
 library(shiny) 
 library(shinydashboard)
+library(leaflet) 
+
 
 dashboardPage(
   dashboardHeader(title = "Health Care Access"),
@@ -19,7 +21,7 @@ dashboardPage(
       tabItem(tabName = "Welcome"), 
       
       # Second tab content
-      tabItem(tabName = "Massachussets vs Louisiana"), 
+      tabItem(tabName = "Massachussets vs Louisiana"),
       tabItem(tabName = "Uninsured Patients"), 
       tabItem(tabName = "Primary Care Physicians"), 
       tabItem(tabName = "Preventable Hospital Stays") 
