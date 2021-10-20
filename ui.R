@@ -1,14 +1,14 @@
 library(shiny) 
 library(shinydashboard)
 library(leaflet) 
-
+library(tidyverse)
 
 dashboardPage(
   dashboardHeader(title = "Health Care Access"),
   dashboardSidebar(
     sidebarMenu( 
       menuItem("Welcome", tabName = "Welcome"),
-      menuItem("Massachussets vs Louisiana", tabName = "Massachussets vs Louisiana", icon = icon("th-large", lib = "glyphicon")), 
+      menuItem("Massachussets vs Louisiana", tabName = "MassachussetsvsLouisiana", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Uninsured Patients", tabName = "Uninsured Patients"), 
       menuItem("Primary Care Physicians", tabName = "Primary Care Physicians", icon = icon("user", lib = "glyphicon")), 
       menuItem("Preventable Hospital Stays", tabName = "Preventable Hospital Stays")
@@ -18,10 +18,15 @@ dashboardPage(
   dashboardBody(
     tabItems(
       # First tab content
-      tabItem(tabName = "Welcome"), 
+      tabItem(tabName = "Welcome"),
       
       # Second tab content
-      tabItem(tabName = "Massachussets vs Louisiana"),
+      tabItem(
+        tabName = "MassachussetsvsLouisiana", 
+        fluidRow(
+        column(12, 
+               leafletOutput("massachussetsMap"))
+        )),
       tabItem(tabName = "Uninsured Patients"), 
       tabItem(tabName = "Primary Care Physicians"), 
       tabItem(tabName = "Preventable Hospital Stays") 
