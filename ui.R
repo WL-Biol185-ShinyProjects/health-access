@@ -9,7 +9,7 @@ dashboardPage(
     sidebarMenu( 
       menuItem("Welcome", tabName = "Welcome"),
       menuItem("Massachussets vs Louisiana", tabName = "MassachussetsvsLouisiana", icon = icon("th-large", lib = "glyphicon")), 
-      menuItem("Uninsured Patients", tabName = "Uninsured Patients"), 
+      menuItem("Uninsured Patients", tabName = "UninsuredPatients", icon = icon("map-marked")), 
       menuItem("Primary Care Physicians", tabName = "Primary Care Physicians", icon = icon("user", lib = "glyphicon")), 
       menuItem("Preventable Hospital Stays", tabName = "Preventable Hospital Stays")
     )
@@ -27,7 +27,13 @@ dashboardPage(
         column(12, 
                leafletOutput("massachussetsMap"))
         )),
-      tabItem(tabName = "Uninsured Patients"), 
+      tabItem(
+        tabName = "UninsuredPatients",
+        fluidRow(
+          column(12,
+                 leafletOutput("Nationmap")
+                )
+                )), 
       tabItem(tabName = "Primary Care Physicians"), 
       tabItem(tabName = "Preventable Hospital Stays") 
     )
