@@ -52,3 +52,8 @@ model11<- lm(preventable_hr ~ state + pct_uninsured, data = renamed)
 model12<-  lm(preventable_hr ~ state + pct_uninsured + adult_obesity, data = renamed)
 
 stargazer(model1, model2, model3, model4, model5, model6, model7, type = "html", out = "regression.html" ,title = "My regression models")
+additonalmeasuredata2021 <- read_excel("2021countyhealthranking_additonalmeasuredata.xlsx", skip = 1)
+glimpse(additonalmeasuredata2021)
+limited_additionalmeasure <- additonalmeasuredata2021[c('FIPS', 'Population', '% Black', '% American Indian & Alaska Native', '% Asian', '% Native Hawaiian/Other Pacific Islander', '% Hispanic', '% Non-Hispanic White', '% Not Proficient in English')]
+glimpse(limited_additionalmeasure)
+combined_data <- merge(renamed, limited_additionalmeasure,by="FIPS")
