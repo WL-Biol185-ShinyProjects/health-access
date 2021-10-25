@@ -9,6 +9,7 @@ library(tidyverse)
 function(input, output) {
  
 #Importing GeoSpatial Data
+<<<<<<< HEAD
   countiesGEO <- rgdal::readOGR("testing.json")
 
 
@@ -17,17 +18,41 @@ function(input, output) {
   
   countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
   countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
+=======
+  countiesGEO <- rgdal::readOGR("counties.json")
+  statesGEO <- rgdal::readOGR("states.geo.json")
+#Note for later move above function and it will only be slow the first load not every load
+  
+  
+#Trim data table for counties 
+  Massachussetts <- 25
+  
+  #geo@data <- geo@data[which(geo@data$STATE == 25)]
+  #geo@polygons[which(geo@data$STATE != 25)] <- NULL
+>>>>>>> 6b063fff11fbabb25f5dfa606ff19807156edf26
   
 #Output function for Massachussetts state & county map
   output$massachussetsMap <- renderLeaflet({
     leaflet(countiesGEO) %>%
     addTiles() %>%
+<<<<<<< HEAD
     setView(-71.3824,42.4072, 5, zoom = 10) %>% 
     addPolygons(color = "red", smoothFactor = 0.5, opacity = 0.5) 
     
+=======
+    setView(-71.3824,42.4072, zoom = 7) %>% 
+    addPolygons(color = "#FFFFFF", weight = 1, smoothFactor = 0.5, dashArray = "3",
+              opacity = 1.0, fillOpacity = 0.1,
+              highlightOptions = highlightOptions(
+                weight = 5,
+                color = "#666",
+                dashArray = "",
+                fillOpacity = 0.7,
+                bringToFront = TRUE))
+>>>>>>> 6b063fff11fbabb25f5dfa606ff19807156edf26
 })
 
-      
+#Output for Nationmap      
   output$Nationmap <- renderLeaflet({
     leaflet(statesGEO) %>%
     setView(-96, 37.8, 5) %>%
