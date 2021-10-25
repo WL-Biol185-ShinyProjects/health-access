@@ -57,3 +57,5 @@ glimpse(additonalmeasuredata2021)
 limited_additionalmeasure <- additonalmeasuredata2021[c('FIPS', 'Population', '% Black', '% American Indian & Alaska Native', '% Asian', '% Native Hawaiian/Other Pacific Islander', '% Hispanic', '% Non-Hispanic White', '% Not Proficient in English')]
 glimpse(limited_additionalmeasure)
 combined_data <- merge(renamed, limited_additionalmeasure,by="FIPS")
+glimpse(combined_data)
+View(combined_data)
