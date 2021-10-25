@@ -3,8 +3,8 @@ library(htmltools)
 library(rgdal)
 library(tidyverse)
 
-countiesGEO <- rgdal::readOGR("US_counties.json")
-statesGEO <- rgdal::readOGR("US_states.json")
+countiesGEO <- rgdal::readOGR("Counties.json")
+statesGEO <- rgdal::readOGR("states.geo.json")
 
 Massachussetts <- 
   
