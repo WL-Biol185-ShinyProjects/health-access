@@ -27,7 +27,7 @@ dashboardPage(
       
       # Second tab content
       tabItem(
-        tabName = "MassachussetsvsLouisiana", 
+        tabName = "MassachussetsvsAlabama", 
         fluidRow(
         column(12, 
                leafletOutput("massachussetsMap"))
