@@ -11,11 +11,11 @@ library(readr)
 
 function(input, output) {
 
-<<<<<<< HEAD
+
   #Importing GeoSpatial Data
   testingGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
-=======
+
 
 #Trim data table for counties 
   Massachussetts <- 25
@@ -27,7 +27,6 @@ function(input, output) {
   bystateavgs <- read_csv("bystateavgs.csv")
   
 #Note for later move above function and it will only be slow the first load not every load
->>>>>>> 08c7aa08a8bcd3b0343f600d2b369267aff6c446
   
   
   #Trim data table for counties 
@@ -98,9 +97,6 @@ function(input, output) {
                   color = "#666",
                   dashArray = "",
                   fillOpacity = 0.7,
-<<<<<<< HEAD
-                  bringToFront = TRUE)
-=======
                   bringToFront = TRUE),
                 label = ~paste0(NAME, ": ", formatC(statesGEO@data$mean_pct_unins_by_state)), 
                 #labelOptions = labelOptions(
@@ -119,9 +115,7 @@ function(input, output) {
         
       )
     
-    
-    
->>>>>>> 65261264c137b22c241e8cdebda7a551fe2905f7
+
         })
   }
 
