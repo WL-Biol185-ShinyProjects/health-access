@@ -50,7 +50,7 @@ function(input, output) {
    testingGEO@data <- left_join(testingGEO@data, mass, by = c("NAME"="county"))
    pal<- colorBin("Blues", domain = testingGEO@data$pct_uninsured)
    leaflet(testingGEO) %>%
-     addTiles() %>%
+     #ddTiles() %>%
      setView(-71.3824, 42.4072, zoom = 7) %>%
      addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
             opacity = 1.0, fillOpacity = 0.7, 
