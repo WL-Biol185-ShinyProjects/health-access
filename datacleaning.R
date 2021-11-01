@@ -58,12 +58,15 @@ glimpse(additonalmeasuredata2021)
 limited_additionalmeasure <- additonalmeasuredata2021[c('FIPS', 'Population', '% Black', '% American Indian & Alaska Native', '% Asian', '% Native Hawaiian/Other Pacific Islander', '% Hispanic', '% Non-Hispanic White', '% Not Proficient in English')]
 glimpse(limited_additionalmeasure)
 combined_data <- merge(renamed, limited_additionalmeasure,by="FIPS")
+
 glimpse(combined_data)
 View(combined_data)
-####
-statesGEO <- rgdal::readOGR("states.geo.json")
-bystateavgs <- read_csv("bystateavgs.csv")
-state_map_data <- 
-View(state_map_data)
+#statesGEO <- rgdal::readOGR("states.geo.json")
 
-
+#bystateavgs <- read_csv("bystateavgs.csv")
+#state_map_data <- 
+#View(state_map_data)
+mass_combined_data<- subset(combined_data, state == "Massachusetts")
+mass_combined_data<- na.omit(mass_combined_data)
+View(mass_combined_data)
+write_csv(mass_combined_data, "massonly.csv")
