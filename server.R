@@ -7,45 +7,59 @@ library(tidyverse)
 
 
 function(input, output) {
- 
-#Importing GeoSpatial Data
-  countiesGEO <- rgdal::readOGR("testing.json")
 
-
-#Trim data table for counties 
+  #Importing GeoSpatial Data
+  testingGEO <- rgdal::readOGR("testing.json")
+  alGEO <- rgdal::readOGR("testing.json")
+  
+  
+  #Trim data table for counties 
   Massachussetts <- 25
   
-  countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
-  countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
-  countiesGEO <- rgdal::readOGR("counties.json")
-  statesGEO <- rgdal::readOGR("states.geo.json")
-#Note for later move above function and it will only be slow the first load not every load
+  data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
+  testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
+  testingGEO@data <- data
+  #countiesGEO <- rgdal::readOGR("counties.json")
+  #statesGEO <- rgdal::readOGR("states.geo.json")
+  #Note for later move above function and it will only be slow the first load not every load
   
-  
-#Trim data table for counties 
-  Massachussetts <- 25
-  
-  #geo@data <- geo@data[which(geo@data$STATE == 25)]
-  #geo@polygons[which(geo@data$STATE != 25)] <- NULL
-  
+  Alabama <- 23
+  alabama_data <- alGEO@data[which(alGEO@data$STATE == 23),]
+  alGEO@polygons[which(alGEO@data$STATE != 23)] <- NULL
+  alGEO@data <- alabama_data
+
 #Output function for Massachussetts state & county map
-  output$massachussetsMap <- renderLeaflet({
-    leaflet(countiesGEO) %>%
-    addTiles() %>%
-    #setView(-71.3824,42.4072, 5, zoom = 10) %>% 
-    #addPolygons(color = "red", smoothFactor = 0.5, opacity = 0.5) 
-    setView(-71.3824,42.4072, zoom = 7) %>% 
-    addPolygons(color = "#FFFFFF", weight = 1, smoothFactor = 0.5, dashArray = "3",
-              opacity = 1.0, fillOpacity = 0.1,
-              highlightOptions = highlightOptions(
-                weight = 5,
-                color = "#666",
-                dashArray = "",
-                fillOpacity = 0.7,
-                bringToFront = TRUE))
+ output$massachussetsMap <- renderLeaflet({
+     leaflet(testingGEO) %>%
+     addTiles() %>%
+     setView(-71.3824, 42.4072, zoom = 7) %>%
+     addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
+            opacity = 1.0, fillOpacity = 0.1, 
+            highlightOptions = highlightOptions(
+            weight = 5,
+            color = "#666",
+            dashArray = "",
+            fillOpacity = 0.7,
+            bringToFront = TRUE))
+      
 })
 
-#Output for Nationmap      
+#Output function for Alabama state & county map
+  output$alabamaMap <- renderLeaflet({
+   leaflet(alGEO) %>%
+      addTiles() %>%
+      setView(-86.9023, 32.3182, zoom = 7) %>% 
+      addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
+                  opacity = 1.0, fillOpacity = 0.1,
+                  highlightOptions = highlightOptions(
+                    weight = 5,
+                    color = "#666",
+                    dashArray = "",
+                    fillOpacity = 0.7,
+                    bringToFront = TRUE))
+  })
+
+  #Output for Nationmap      
   output$Nationmap <- renderLeaflet({
     leaflet(statesGEO) %>%
     setView(-96, 37.8, 5) %>%
