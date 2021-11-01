@@ -78,7 +78,7 @@ function(input, output) {
    # ) %>% lapply(htmltools::HTML)
     leaflet(statesGEO) %>%
     setView(-96, 37.8, 5) %>%
-    addPolygons(weight = 2, opacity = 1, color = "white", 
+    addPolygons(weight = 2, opacity = 1, color = "white",
                 dashArray = "3", fillOpacity = 0.7, 
                 fillColor = ~pal(mean_pct_unins_by_state),
                 #fillColor = ~colorFactor(c("blue", "red"), statesGEO@data$mean_num_primary_cp_by_state)(statesGEO@data$mean_num_primary_cp_by_state),
@@ -87,6 +87,9 @@ function(input, output) {
                   color = "#666",
                   dashArray = "",
                   fillOpacity = 0.7,
+<<<<<<< HEAD
+                  bringToFront = TRUE)
+=======
                   bringToFront = TRUE),
                 label = ~paste0(NAME, ": ", formatC(statesGEO@data$mean_pct_unins_by_state)), 
                 #labelOptions = labelOptions(
@@ -107,6 +110,7 @@ function(input, output) {
     
     
     
+>>>>>>> 65261264c137b22c241e8cdebda7a551fe2905f7
         })
   }
 
