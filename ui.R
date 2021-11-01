@@ -14,7 +14,7 @@ dashboardPage(
       menuItem("Welcome", tabName = "Welcome"),
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),   
-      menuItem("Uninsured Patients", tabName = "UninsuredPatients", icon = icon("map-marked")), 
+      menuItem("National", tabName = "National", icon = icon("map-marked")), 
       menuItem("Primary Care Physicians", tabName = "Primary Care Physicians", icon = icon("user", lib = "glyphicon")), 
       menuItem("Preventable Hospital Stays", tabName = "Preventable Hospital Stays")
     )
@@ -42,8 +42,13 @@ dashboardPage(
         )),
       
       tabItem(
-        tabName = "UninsuredPatients",
+        tabName = "National",
         fluidRow(
+          #selectInput(inputId = "interest", 
+                     # label = "Select Variable of Interest", 
+                     # choices = names(bystateavgs),
+                      #multiple = FALSE, 
+                     # selected = "mean_pct_unins_by_state"),
           column(12,
                  leafletOutput("Nationmap")
                 )

@@ -17,6 +17,7 @@ function(input, output) {
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
   bystateavgs <- read_csv("bystateavgs.csv")
+  mass<- read_csv("massonly.csv")
   
 #Note for later move above function and it will only be slow the first load not every load
 
@@ -27,6 +28,7 @@ function(input, output) {
   data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
   testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
   testingGEO@data <- data
+  
   #Note for later move above function and it will only be slow the first load not every load
   
   Alabama <- 23
@@ -36,17 +38,29 @@ function(input, output) {
 
 #Output function for Massachussetts state & county map
  output$massachussetsMap <- renderLeaflet({
-     leaflet(testingGEO) %>%
+   testingGEO@data <- left_join(testingGEO@data, mass, by = c("NAME"="county"))
+   pal<- colorBin("Blues", domain = testingGEO@data$pct_uninsured)
+   leaflet(testingGEO) %>%
      addTiles() %>%
      setView(-71.3824, 42.4072, zoom = 7) %>%
-     addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
-            opacity = 1.0, fillOpacity = 0.1, 
+     addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
+            opacity = 1.0, fillOpacity = 0.7, 
+            fillColor = ~pal(pct_uninsured),
             highlightOptions = highlightOptions(
             weight = 5,
             color = "#666",
             dashArray = "",
             fillOpacity = 0.7,
-            bringToFront = TRUE))
+            bringToFront = TRUE),
+            label = ~paste0(NAME, ": ", formatC(testingGEO@data$pct_uninsured))) %>%
+     addLegend("bottomright",
+               pal = pal, 
+               values = ~(testingGEO@data$pct_uninsured), 
+               opacity = 0.8,
+               title = "Percent Uninsured by County", 
+               labFormat = labelFormat(suffix = "%")
+       
+     )
       
 })
 
