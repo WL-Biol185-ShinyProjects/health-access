@@ -49,15 +49,14 @@ function(input, output) {
   output$Nationmap <- renderLeaflet({
     leaflet(statesGEO) %>%
     setView(-96, 37.8, 5) %>%
-    addPolygons(weight = 2, opacity = 1, color = "white", 
+    addPolygons(weight = 2, opacity = 1, color = "white",
                 dashArray = "3", fillOpacity = 0.7, 
                 highlightOptions = highlightOptions(
                   weight = 5,
                   color = "#666",
                   dashArray = "",
                   fillOpacity = 0.7,
-                  bringToFront = TRUE))
-    
+                  bringToFront = TRUE)
         })
   }
 
