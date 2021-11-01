@@ -21,10 +21,9 @@ function(input, output) {
 #Trim data table for counties 
   Massachussetts <- 25
   
-  countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
-  countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
-  countiesGEO <- rgdal::readOGR("counties.json")
-
+  #countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
+  #countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
+  #countiesGEO <- rgdal::readOGR("Counties.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
   bystateavgs <- read_csv("bystateavgs.csv")
   mass<- read_csv("massonly.csv")
