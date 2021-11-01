@@ -29,7 +29,8 @@ bystate<- renamed %>%
             mean_rate_primary_cp_by_state = mean(rate_primary_cp, na.rm = TRUE),
             mean_ratio_primary_cp = mean(num_ratio_primary_cp, na.rm = TRUE), 
             mean_adult_obesity = mean(adult_obesity, na.rm = TRUE),
-            mean_pct_highschool_completed = mean(pct_highschool_completed, na.rm = TRUE))
+            mean_pct_highschool_completed = mean(pct_highschool_completed, na.rm = TRUE)) 
+write_csv(bystate, "bystateavgs.csv")
 bystate
 national_preventable_hr<- mean(bystate$mean_preventable_hr_by_state)
 national_pct_unins<- mean(bystate$mean_pct_unins_by_state)
@@ -59,3 +60,10 @@ glimpse(limited_additionalmeasure)
 combined_data <- merge(renamed, limited_additionalmeasure,by="FIPS")
 glimpse(combined_data)
 View(combined_data)
+####
+statesGEO <- rgdal::readOGR("states.geo.json")
+bystateavgs <- read_csv("bystateavgs.csv")
+state_map_data <- 
+View(state_map_data)
+
+
