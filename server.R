@@ -15,8 +15,18 @@ function(input, output) {
   #Importing GeoSpatial Data
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
+
+
+
+#Trim data table for counties 
+  Massachussetts <- 25
+  
+  #countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
+  #countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
+  #countiesGEO <- rgdal::readOGR("Counties.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
   bystateavgs <- read_csv("bystateavgs.csv")
+  mass<- read_csv("massonly.csv")
   
   #Assigning Characters
   alGEO@data$STATE <- as.character(alGEO@data$STATE)
@@ -26,9 +36,16 @@ function(input, output) {
   #Trim data table for counties 
   Massachussetts <- 25
   
+<<<<<<< HEAD
   madata <- maGEO@data[which(maGEO@data$STATE == 25),]
   maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
   maGEO@data <- madata
+=======
+  data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
+  testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
+  testingGEO@data <- data
+  
+>>>>>>> 8d1d22232cdfc5fa126e615f667251219a02e060
   #Note for later move above function and it will only be slow the first load not every load
   
   #statenumber for al is 01, 01 is character vector, filter by string
@@ -40,17 +57,34 @@ function(input, output) {
   #remove addtiles
 #Output  function for Massachussetts state & county map
  output$massachussetsMap <- renderLeaflet({
+<<<<<<< HEAD
      leaflet(maGEO) %>%
      #addTiles() %>%
+=======
+   testingGEO@data <- left_join(testingGEO@data, mass, by = c("NAME"="county"))
+   pal<- colorBin("Blues", domain = testingGEO@data$pct_uninsured)
+   leaflet(testingGEO) %>%
+     #ddTiles() %>%
+>>>>>>> 8d1d22232cdfc5fa126e615f667251219a02e060
      setView(-71.3824, 42.4072, zoom = 7) %>%
-     addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
-            opacity = 1.0, fillOpacity = 0.1, 
+     addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
+            opacity = 1.0, fillOpacity = 0.7, 
+            fillColor = ~pal(pct_uninsured),
             highlightOptions = highlightOptions(
             weight = 5,
             color = "#666",
             dashArray = "",
             fillOpacity = 0.7,
-            bringToFront = TRUE))
+            bringToFront = TRUE),
+            label = ~paste0(NAME, ": ", formatC(testingGEO@data$pct_uninsured))) %>%
+     addLegend("bottomright",
+               pal = pal, 
+               values = ~(testingGEO@data$pct_uninsured), 
+               opacity = 0.8,
+               title = "Percent Uninsured by County", 
+               labFormat = labelFormat(suffix = "%")
+       
+     )
       
 })
 
@@ -109,7 +143,7 @@ function(input, output) {
         
       )
     
-    
+
         })
   }
 
