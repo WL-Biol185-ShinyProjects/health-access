@@ -21,15 +21,18 @@ function(input, output) {
   
   
   #Trim data table for counties 
-  Massachussetts <- 25
+
+  #  Massachussetts <- 25
   
-  mass<- read_csv("massonly.csv")
+ mass<- read_csv("massonly.csv")
   
   
   #Note for later move above function and it will only be slow the first load not every load
   
   
-  #Trim data table for counties 
+  #Trim data table for counties
+  maGEO@data$STATE <- as.character(maGEO@data$STATE)
+  str(maGEO)
   Massachussetts <- 25
   madata <- maGEO@data[which(maGEO@data$STATE == 25),]
   maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
@@ -39,11 +42,13 @@ function(input, output) {
   
   #statenumber for al is 01, 01 is character vector, filter by string
   #Assigning Characters
-  alGEO@data$STATE <- as.character(alGEO@data$STATE)
-  Alabama <- 01
-  alabamadata <- alGEO@data[which(alGEO@data$STATE == 01),]
-  alGEO@polygons[which(alGEO@data$STATE != 01)] <- NULL
-  alGEO@data <- alabamadata 
+ # alGEO@data$STATE <- as.character(alGEO@data$STATE)
+ # str(alGEO)
+  
+  #alabama <- 01
+  #alabamadata <- alGEO@data[which(alGEO@data$STATE == 01),]
+  #alGEO@polygons[which(alGEO@data$STATE != 01)] <- NULL
+  #alGEO@data <- alabamadata 
   
   #remove addtiles
   #Output  function for Massachussetts state & county map
@@ -76,15 +81,19 @@ function(input, output) {
   #Output function for Alabama state & county map
   output$alabamaMap <- renderLeaflet({
     leaflet(alGEO) %>%
-      setView(-86.9023, 32.3182, zoom = 7) %>% 
-      addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
-                  opacity = 1.0, fillOpacity = 0.1,
-                  highlightOptions = highlightOptions(
-                    weight = 5,
-                    color = "#666",
-                    dashArray = "",
-                    fillOpacity = 0.7,
-                    bringToFront = TRUE))
+    setView(-86.9023, 32.3182, zoom = 7) %>% 
+    addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
+                opacity = 1.0, fillOpacity = 0.1,
+                highlightOptions = highlightOptions()
+    
+   # addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
+           #       opacity = 1.0, fillOpacity = 0.1,
+            #      highlightOptions = highlightOptions(
+             #       weight = 5,
+             #       color = "#666",
+            #        dashArray = "",
+             #       fillOpacity = 0.7,
+              #      bringToFront = TRUE))
   })
   
   #Output for Nationmap      
