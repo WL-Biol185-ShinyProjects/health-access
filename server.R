@@ -15,7 +15,6 @@ function(input, output) {
   #Importing GeoSpatial Data
   testingGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
-<<<<<<< HEAD
 
 
 #Trim data table for counties 
@@ -24,17 +23,10 @@ function(input, output) {
   countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
   countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
   countiesGEO <- rgdal::readOGR("counties.json")
-=======
->>>>>>> 69321bdbc57ac6709b417eda3a9c06633285b8f9
   statesGEO <- rgdal::readOGR("states.geo.json")
   bystateavgs <- read_csv("bystateavgs.csv")
   
 #Note for later move above function and it will only be slow the first load not every load
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 69321bdbc57ac6709b417eda3a9c06633285b8f9
   
   #Trim data table for counties 
   Massachussetts <- 25
@@ -119,12 +111,6 @@ function(input, output) {
                 labFormat = labelFormat(suffix = "%")
         
       )
-    
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 69321bdbc57ac6709b417eda3a9c06633285b8f9
         })
   }
 
