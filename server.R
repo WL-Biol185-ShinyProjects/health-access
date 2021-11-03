@@ -36,16 +36,15 @@ function(input, output) {
   #Trim data table for counties 
   Massachussetts <- 25
   
-<<<<<<< HEAD
+
   madata <- maGEO@data[which(maGEO@data$STATE == 25),]
   maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
   maGEO@data <- madata
-=======
+
   data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
   testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
   testingGEO@data <- data
-  
->>>>>>> 8d1d22232cdfc5fa126e615f667251219a02e060
+
   #Note for later move above function and it will only be slow the first load not every load
   
   #statenumber for al is 01, 01 is character vector, filter by string
@@ -57,15 +56,14 @@ function(input, output) {
   #remove addtiles
 #Output  function for Massachussetts state & county map
  output$massachussetsMap <- renderLeaflet({
-<<<<<<< HEAD
+
      leaflet(maGEO) %>%
      #addTiles() %>%
-=======
+
    testingGEO@data <- left_join(testingGEO@data, mass, by = c("NAME"="county"))
    pal<- colorBin("Blues", domain = testingGEO@data$pct_uninsured)
    leaflet(testingGEO) %>%
      #ddTiles() %>%
->>>>>>> 8d1d22232cdfc5fa126e615f667251219a02e060
      setView(-71.3824, 42.4072, zoom = 7) %>%
      addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
             opacity = 1.0, fillOpacity = 0.7, 
