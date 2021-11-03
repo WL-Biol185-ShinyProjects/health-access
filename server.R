@@ -16,7 +16,7 @@ function(input, output) {
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
-  bystateavgs <- read_csv("bystateavgs.csv")
+  stateavg_only <- read_csv("stateavg_only.csv")
   
   
   
@@ -90,25 +90,25 @@ function(input, output) {
   #Output for Nationmap      
   output$Nationmap <- renderLeaflet({
     #joining data 
-    statesGEO@data<- left_join(statesGEO@data, bystateavgs, by= c("NAME" = "state"))
-    pal<- colorBin("Blues", domain = statesGEO@data$mean_pct_unins_by_state)
+    statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
+    pal<- colorBin("Blues", domain = statesGEO@data$pct_uninsured)
     
     leaflet(statesGEO) %>%
       setView(-96, 37.8, 5) %>%
       addPolygons(weight = 2, opacity = 1, color = "white",
                   dashArray = "3", fillOpacity = 0.7, 
-                  fillColor = ~pal(mean_pct_unins_by_state),
+                  fillColor = ~pal(pct_uninsured),
                   highlightOptions = highlightOptions(
                     weight = 5,
                     color = "#666",
                     dashArray = "",
                     fillOpacity = 0.7,
                     bringToFront = TRUE),
-                  label = ~paste0(NAME, ": ", formatC(statesGEO@data$mean_pct_unins_by_state))
+                  label = ~paste0(NAME, ": ", formatC(statesGEO@data$pct_uninsured))
       ) %>%
       addLegend("bottomright",
                 pal = pal,
-                values = ~(statesGEO@data$mean_pct_unins_by_state),
+                values = ~(statesGEO@data$pct_uninsured),
                 opacity = 0.8,
                 title = "Mean Percent Uninsured by State",
                 labFormat = labelFormat(suffix = "%")
