@@ -13,31 +13,35 @@ function(input, output) {
 
 
   #Importing GeoSpatial Data
-  testingGEO <- rgdal::readOGR("testing.json")
+  maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
   bystateavgs <- read_csv("bystateavgs.csv")
   
+  #Assigning Characters
+  alGEO@data$STATE <- as.character(alGEO@data$STATE)
 #Note for later move above function and it will only be slow the first load not every load
-
+ 
   
   #Trim data table for counties 
   Massachussetts <- 25
   
-  data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
-  testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
-  testingGEO@data <- data
+  madata <- maGEO@data[which(maGEO@data$STATE == 25),]
+  maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
+  maGEO@data <- madata
   #Note for later move above function and it will only be slow the first load not every load
   
-  Alabama <- 23
-  alabama_data <- alGEO@data[which(alGEO@data$STATE == 23),]
-  alGEO@polygons[which(alGEO@data$STATE != 23)] <- NULL
-  alGEO@data <- alabama_data
+  #statenumber for al is 01, 01 is character vector, filter by string
+  Alabama <- 01
+  alabamadata <- alGEO@data[which(alGEO@data$STATE == 01),]
+  alGEO@polygons[which(alGEO@data$STATE != 01)] <- NULL
+  alGEO@data <- alabamadata 
 
-#Output function for Massachussetts state & county map
+  #remove addtiles
+#Output  function for Massachussetts state & county map
  output$massachussetsMap <- renderLeaflet({
-     leaflet(testingGEO) %>%
-     addTiles() %>%
+     leaflet(maGEO) %>%
+     #addTiles() %>%
      setView(-71.3824, 42.4072, zoom = 7) %>%
      addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
             opacity = 1.0, fillOpacity = 0.1, 
