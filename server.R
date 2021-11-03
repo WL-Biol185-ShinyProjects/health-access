@@ -15,39 +15,31 @@ function(input, output) {
   #Importing GeoSpatial Data
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
+  statesGEO <- rgdal::readOGR("states.geo.json")
+  bystateavgs <- read_csv("bystateavgs.csv")
 
 
 
 #Trim data table for counties 
   Massachussetts <- 25
   
-  #countiesGEO@data <- countiesGEO@data[which(countiesGEO@data$STATE == 25),]
-  #countiesGEO@polygons[which(countiesGEO@data$STATE != 25)] <- NULL
-  #countiesGEO <- rgdal::readOGR("Counties.json")
-  statesGEO <- rgdal::readOGR("states.geo.json")
-  bystateavgs <- read_csv("bystateavgs.csv")
   mass<- read_csv("massonly.csv")
   
-  #Assigning Characters
-  alGEO@data$STATE <- as.character(alGEO@data$STATE)
+
 #Note for later move above function and it will only be slow the first load not every load
  
   
   #Trim data table for counties 
   Massachussetts <- 25
-  
-
   madata <- maGEO@data[which(maGEO@data$STATE == 25),]
   maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
   maGEO@data <- madata
 
-  data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
-  testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
-  testingGEO@data <- data
-
   #Note for later move above function and it will only be slow the first load not every load
   
   #statenumber for al is 01, 01 is character vector, filter by string
+  #Assigning Characters
+  alGEO@data$STATE <- as.character(alGEO@data$STATE)
   Alabama <- 01
   alabamadata <- alGEO@data[which(alGEO@data$STATE == 01),]
   alGEO@polygons[which(alGEO@data$STATE != 01)] <- NULL
@@ -56,14 +48,9 @@ function(input, output) {
   #remove addtiles
 #Output  function for Massachussetts state & county map
  output$massachussetsMap <- renderLeaflet({
-
+   maGEO@data <- left_join(maGEO@data, mass, by = c("NAME"="county"))
+   pal<- colorBin("Blues", domain = maGEO@data$pct_uninsured)
      leaflet(maGEO) %>%
-     #addTiles() %>%
-
-   testingGEO@data <- left_join(testingGEO@data, mass, by = c("NAME"="county"))
-   pal<- colorBin("Blues", domain = testingGEO@data$pct_uninsured)
-   leaflet(testingGEO) %>%
-     #ddTiles() %>%
      setView(-71.3824, 42.4072, zoom = 7) %>%
      addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
             opacity = 1.0, fillOpacity = 0.7, 
@@ -74,10 +61,10 @@ function(input, output) {
             dashArray = "",
             fillOpacity = 0.7,
             bringToFront = TRUE),
-            label = ~paste0(NAME, ": ", formatC(testingGEO@data$pct_uninsured))) %>%
+            label = ~paste0(NAME, ": ", formatC(maGEO@data$pct_uninsured))) %>%
      addLegend("bottomright",
                pal = pal, 
-               values = ~(testingGEO@data$pct_uninsured), 
+               values = ~(maGEO@data$pct_uninsured), 
                opacity = 0.8,
                title = "Percent Uninsured by County", 
                labFormat = labelFormat(suffix = "%")
@@ -89,7 +76,6 @@ function(input, output) {
 #Output function for Alabama state & county map
   output$alabamaMap <- renderLeaflet({
    leaflet(alGEO) %>%
-      addTiles() %>%
       setView(-86.9023, 32.3182, zoom = 7) %>% 
       addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
                   opacity = 1.0, fillOpacity = 0.1,
@@ -107,30 +93,18 @@ function(input, output) {
     statesGEO@data<- left_join(statesGEO@data, bystateavgs, by= c("NAME" = "state"))
     pal<- colorBin("Blues", domain = statesGEO@data$mean_pct_unins_by_state)
     
-    
-#    labels<- sprintf(
- #     "<strong%s</strong><br/>", 
-  #    statesGEO@data$NAME, statesGEO@data$mean_pct_unins_by_state
-   # ) %>% lapply(htmltools::HTML)
     leaflet(statesGEO) %>%
     setView(-96, 37.8, 5) %>%
     addPolygons(weight = 2, opacity = 1, color = "white",
                 dashArray = "3", fillOpacity = 0.7, 
                 fillColor = ~pal(mean_pct_unins_by_state),
-                #fillColor = ~colorFactor(c("blue", "red"), statesGEO@data$mean_num_primary_cp_by_state)(statesGEO@data$mean_num_primary_cp_by_state),
                 highlightOptions = highlightOptions(
                   weight = 5,
                   color = "#666",
                   dashArray = "",
                   fillOpacity = 0.7,
                   bringToFront = TRUE),
-                label = ~paste0(NAME, ": ", formatC(statesGEO@data$mean_pct_unins_by_state)), 
-                #labelOptions = labelOptions(
-                 # style = list("font-weight" = "normal", padding = "3px 8px"),
-                  #textsize = "15px",
-                  #direction = "auto"
-                #)
-                
+                label = ~paste0(NAME, ": ", formatC(statesGEO@data$mean_pct_unins_by_state))
                 ) %>%
       addLegend("bottomright",
                 pal = pal,
