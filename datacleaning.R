@@ -55,7 +55,7 @@ model12<-  lm(preventable_hr ~ state + pct_uninsured + adult_obesity, data = ren
 stargazer(model1, model2, model3, model4, model5, model6, model7, type = "html", out = "regression.html" ,title = "My regression models")
 additonalmeasuredata2021 <- read_excel("2021countyhealthranking_additonalmeasuredata.xlsx", skip = 1)
 glimpse(additonalmeasuredata2021)
-limited_additionalmeasure <- additonalmeasuredata2021[c('FIPS', 'Population', '% Black', '% American Indian & Alaska Native', '% Asian', '% Native Hawaiian/Other Pacific Islander', '% Hispanic', '% Non-Hispanic White', '% Not Proficient in English')]
+limited_additionalmeasure <- additonalmeasuredata2021[c('FIPS', 'Population', '% Black', '% American Indian & Alaska Native', '% Asian', '% Native Hawaiian/Other Pacific Islander', '% Hispanic', '% Non-Hispanic White', '% Not Proficient in English', 'Population')]
 glimpse(limited_additionalmeasure)
 combined_data <- merge(renamed, limited_additionalmeasure,by="FIPS")
 
@@ -70,3 +70,6 @@ mass_combined_data<- subset(combined_data, state == "Massachusetts")
 mass_combined_data<- na.omit(mass_combined_data)
 View(mass_combined_data)
 write_csv(mass_combined_data, "massonly.csv")
+al_combined_data<- subset(combined_data, state == "Alabama")
+al_combined_data<- na.omit(al_combined_data)
+write_csv(al_combined_data, "alonly.csv")
