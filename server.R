@@ -13,7 +13,7 @@ function(input, output) {
 
 
   #Importing GeoSpatial Data
-  testingGEO <- rgdal::readOGR("testing.json")
+  maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
 
 
@@ -28,29 +28,44 @@ function(input, output) {
   bystateavgs <- read_csv("bystateavgs.csv")
   mass<- read_csv("massonly.csv")
   
+  #Assigning Characters
+  alGEO@data$STATE <- as.character(alGEO@data$STATE)
 #Note for later move above function and it will only be slow the first load not every load
-
+ 
   
   #Trim data table for counties 
   Massachussetts <- 25
   
+<<<<<<< HEAD
+  madata <- maGEO@data[which(maGEO@data$STATE == 25),]
+  maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
+  maGEO@data <- madata
+=======
   data <- testingGEO@data[which(testingGEO@data$STATE == 25),]
   testingGEO@polygons[which(testingGEO@data$STATE != 25)] <- NULL
   testingGEO@data <- data
   
+>>>>>>> 8d1d22232cdfc5fa126e615f667251219a02e060
   #Note for later move above function and it will only be slow the first load not every load
   
-  Alabama <- 23
-  alabama_data <- alGEO@data[which(alGEO@data$STATE == 23),]
-  alGEO@polygons[which(alGEO@data$STATE != 23)] <- NULL
-  alGEO@data <- alabama_data
+  #statenumber for al is 01, 01 is character vector, filter by string
+  Alabama <- 01
+  alabamadata <- alGEO@data[which(alGEO@data$STATE == 01),]
+  alGEO@polygons[which(alGEO@data$STATE != 01)] <- NULL
+  alGEO@data <- alabamadata 
 
-#Output function for Massachussetts state & county map
+  #remove addtiles
+#Output  function for Massachussetts state & county map
  output$massachussetsMap <- renderLeaflet({
+<<<<<<< HEAD
+     leaflet(maGEO) %>%
+     #addTiles() %>%
+=======
    testingGEO@data <- left_join(testingGEO@data, mass, by = c("NAME"="county"))
    pal<- colorBin("Blues", domain = testingGEO@data$pct_uninsured)
    leaflet(testingGEO) %>%
      #ddTiles() %>%
+>>>>>>> 8d1d22232cdfc5fa126e615f667251219a02e060
      setView(-71.3824, 42.4072, zoom = 7) %>%
      addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
             opacity = 1.0, fillOpacity = 0.7, 
