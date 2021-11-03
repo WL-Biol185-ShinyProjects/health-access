@@ -73,3 +73,20 @@ write_csv(mass_combined_data, "massonly.csv")
 al_combined_data<- subset(combined_data, state == "Alabama")
 al_combined_data<- na.omit(al_combined_data)
 write_csv(al_combined_data, "alonly.csv")
+stateavg_only<- subset(combined_data, is.na(county))
+View(stateavg_only)
+write_csv(stateavg_only, "stateavg_only")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
