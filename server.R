@@ -17,40 +17,24 @@ function(input, output) {
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
   bystateavgs <- read_csv("bystateavgs.csv")
-  
-  
-  
-  #Trim data table for counties 
-
-  #  Massachussetts <- 25
-  
- mass<- read_csv("massonly.csv")
+  mass<- read_csv("massonly.csv")
   
   
   #Note for later move above function and it will only be slow the first load not every load
   
   
   #Trim data table for counties
-  maGEO@data$STATE <- as.character(maGEO@data$STATE)
-  str(maGEO)
-  Massachussetts <- 25
-  madata <- maGEO@data[which(maGEO@data$STATE == 25),]
-  maGEO@polygons[which(maGEO@data$STATE != 25)] <- NULL
+
+  Massachussetts <- "25"
+  madata <- maGEO@data[which(maGEO@data$STATE == Massachussetts),]
+  maGEO@polygons[which(maGEO@data$STATE != Massachussetts)] <- NULL
   maGEO@data <- madata
-  
-  #Note for later move above function and it will only be slow the first load not every load
-  
-  #statenumber for al is 01, 01 is character vector, filter by string
-  #Assigning Characters
- # alGEO@data$STATE <- as.character(alGEO@data$STATE)
- # str(alGEO)
-  
-  #alabama <- 01
-  #alabamadata <- alGEO@data[which(alGEO@data$STATE == 01),]
-  #alGEO@polygons[which(alGEO@data$STATE != 01)] <- NULL
-  #alGEO@data <- alabamadata 
-  
-  #remove addtiles
+
+  alabama <- "01"
+  alabamadata <- alGEO@data[which(alGEO@data$STATE == alabama),]
+  alGEO@polygons[which(alGEO@data$STATE!= alabama)] <- NULL
+  alGEO@data <- alabamadata 
+
   #Output  function for Massachussetts state & county map
   output$massachussetsMap <- renderLeaflet({
     maGEO@data <- left_join(maGEO@data, mass, by = c("NAME"="county"))
@@ -84,16 +68,12 @@ function(input, output) {
     setView(-86.9023, 32.3182, zoom = 7) %>% 
     addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
                 opacity = 1.0, fillOpacity = 0.1,
-                highlightOptions = highlightOptions()
-    
-   # addPolygons(weight = 1, smoothFactor = 0.5, dashArray = "3",
-           #       opacity = 1.0, fillOpacity = 0.1,
-            #      highlightOptions = highlightOptions(
-             #       weight = 5,
-             #       color = "#666",
-            #        dashArray = "",
-             #       fillOpacity = 0.7,
-              #      bringToFront = TRUE))
+                highlightOptions = highlightOptions(
+                  weight = 5,
+                  color = "666", 
+                  dashArray = "", 
+                  fillOpacity = 0.7, 
+                  bringToFront = TRUE))
   })
   
   #Output for Nationmap      
