@@ -47,7 +47,7 @@ dashboardPage(
           sidebarLayout(
             sidebarPanel(
               selectInput(
-                "input", "Variable:",
+                "natvariable", "Variable:",
                 choices = c("pct_uninsured",
                             "num_ratio_primary_cp"),
                 selected = 1

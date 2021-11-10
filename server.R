@@ -10,7 +10,18 @@ library(readr)
 
 
 function(input, output) {
-  
+  labeled<- reactive(
+    {
+      req(input$natvariable)
+      if(input$natvariable == "pct_uninsured"){
+        labeled<- "Percent Uninsured"
+      }else if(input$natvariable == "num_ratio_primary_cp"){
+        labaled<- "Ratio of Population to Primary Care Providers"
+      }
+    }
+  )
+    
+    
   
   #Importing GeoSpatial Data
   maGEO <- rgdal::readOGR("testing.json")
@@ -84,26 +95,25 @@ function(input, output) {
   output$Nationmap <- renderLeaflet({
     #joining data 
     statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
-    pal<- colorBin("Blues", domain = statesGEO@data[["input"]])
-    
+    pal<- colorBin("Blues", domain = statesGEO@data[[input$natvariable]])
     leaflet(statesGEO) %>%
       setView(-96, 37.8, 5) %>%
       addPolygons(weight = 2, opacity = 1, color = "white",
                   dashArray = "3", fillOpacity = 0.7, 
-                  fillColor = ~pal(pct_uninsured),
+                  fillColor = ~pal(statesGEO@data[[input$natvariable]]),
                   highlightOptions = highlightOptions(
                     weight = 5,
                     color = "#666",
                     dashArray = "",
                     fillOpacity = 0.7,
                     bringToFront = TRUE),
-                  label = ~paste0(NAME, ": ", formatC(statesGEO@data$pct_uninsured))
+                  label = ~paste0(NAME, ": ", formatC(statesGEO@data[[input$natvariable]]))
       ) %>%
       addLegend("bottomright",
                 pal = pal,
-                values = ~(statesGEO@data$pct_uninsured),
+                values = ~(statesGEO@data[[input$natvariable]]),
                 opacity = 0.8,
-                title = "Mean Percent Uninsured by State",
+                title = labeled(),
                 labFormat = labelFormat(suffix = "%")
                 
       )
