@@ -74,6 +74,7 @@ al_combined_data<- subset(combined_data, state == "Alabama")
 al_combined_data<- na.omit(al_combined_data)
 write_csv(al_combined_data, "alonly.csv")
 stateavg_only<- subset(combined_data, is.na(county))
+stateavg_only$num_ratio_primary_cp<-as.numeric(substring(stateavg_only$ratio_primary_cp, 1, nchar(stateavg_only$ratio_primary_cp) -2))
 View(stateavg_only)
 write_csv(stateavg_only, "stateavg_only.csv")
 
