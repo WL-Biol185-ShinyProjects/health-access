@@ -15,7 +15,7 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),   
       menuItem("National", tabName = "National", icon = icon("map-marked")), 
-      menuItem("Primary Care Physicians", tabName = "Primary Care Physicians", icon = icon("user", lib = "glyphicon")), 
+      menuItem("Primary Care", tabName = "Primary Care", icon = icon("user", lib = "glyphicon")), 
       menuItem("Preventable Hospital Stays", tabName = "Preventable Hospital Stays")
     )
   ),
@@ -44,18 +44,27 @@ dashboardPage(
       tabItem(
         tabName = "National",
         fluidRow(
-          #selectInput(inputId = "interest", 
-                     # label = "Select Variable of Interest", 
-                     # choices = names(bystateavgs),
-                      #multiple = FALSE, 
-                     # selected = "mean_pct_unins_by_state"),
-          column(12,
-                 leafletOutput("Nationmap")
-                )
-                )), 
-      tabItem(tabName = "Primary Care Physicians"), 
+          sidebarLayout(
+            sidebarPanel(
+              selectInput(
+                "input", "Variable:",
+                choices = c("pct_uninsured",
+                            "num_ratio_primary_cp"),
+                selected = 1
+              )
+            ),
+           mainPanel(
+             leafletOutput("Nationmap")) 
+          ))), #if you add another ) here thats what you need but it gets rid of the primary map,
+      
+      tabItem(
+        tabName = "Primary Care", 
+        fluidRow(
+          column(12, 
+                 leafletOutput("primaryMap"))
+        )),
       tabItem(tabName = "Preventable Hospital Stays") 
+    
     )
   )
 )
-

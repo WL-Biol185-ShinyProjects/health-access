@@ -91,7 +91,7 @@ function(input, output) {
   output$Nationmap <- renderLeaflet({
     #joining data 
     statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
-    pal<- colorBin("Blues", domain = statesGEO@data$pct_uninsured)
+    pal<- colorBin("Blues", domain = statesGEO@data[["input"]])
     
     leaflet(statesGEO) %>%
       setView(-96, 37.8, 5) %>%
@@ -108,7 +108,7 @@ function(input, output) {
       ) %>%
       addLegend("bottomright",
                 pal = pal,
-                values = ~(statesGEO@data$pct_uninsured),
+                values = ~(statesGEO@data[["input"]]),
                 opacity = 0.8,
                 title = "Mean Percent Uninsured by State",
                 labFormat = labelFormat(suffix = "%")
@@ -117,6 +117,37 @@ function(input, output) {
     
     
   })
+  #Output for priary care      
+  output$primaryMap <- renderLeaflet({
+    #joining data 
+    statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
+    pal<- colorBin("Blues", domain = statesGEO@data$num_ratio_primary_cp)
+    
+    leaflet(statesGEO) %>%
+      setView(-96, 37.8, 5) %>%
+      addPolygons(weight = 2, opacity = 1, color = "white",
+                  dashArray = "3", fillOpacity = 0.7,  
+                  fillColor = ~pal(statesGEO@data$num_ratio_primary_cp),
+                  highlightOptions = highlightOptions(
+                    weight = 5,
+                    color = "#666",
+                    dashArray = "",
+                    fillOpacity = 0.7,
+                    bringToFront = TRUE),
+                  label = ~paste0(NAME, ": ", formatC(statesGEO@data$num_ratio_primary_cp))
+      ) %>%
+      addLegend("bottomright",
+                pal = pal,
+                values = ~(statesGEO@data$num_ratio_primary_cp),
+                opacity = 0.8,
+                title = "Ratios of Primary Care Physician by State",
+                labFormat = labelFormat(suffix = ":1")
+                
+      )
+    
+    
+  })
+  
 }
 
 
