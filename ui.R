@@ -58,22 +58,7 @@ dashboardPage(
             ),
            mainPanel(
              leafletOutput("Nationmap")) 
-<<<<<<< HEAD
-          ))), 
-      #if you add another ) here thats what you need but it gets rid of the primary map,
-      
-      tabItem(
-        tabName = "Primary Care", 
-        fluidRow(
-          column(12, 
-                 leafletOutput("primaryMap"))
-        )), 
-      tabItem(tabName = "Preventable Hospital Stays") 
-)
-)
-)
-=======
-          ))), #if you add another ) here thats what you need but it gets rid of the primary map,
+          ))),
       tabItem(
         tabName = "Primary Care Providers", 
         fluidRow()),
@@ -81,4 +66,3 @@ dashboardPage(
     )
   )
 )
->>>>>>> 419ed97f842e21f78fd89da0937d69338a830b5d

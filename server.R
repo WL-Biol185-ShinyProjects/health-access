@@ -34,25 +34,11 @@ function(input, output) {
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
-<<<<<<< HEAD
 
   bystateavgs <- read_csv("bystateavgs.csv")
 
-=======
-  bystateavgs <- read_csv("bystateavgs.csv")
->>>>>>> 419ed97f842e21f78fd89da0937d69338a830b5d
   stateavg_only <- read_csv("stateavg_only.csv")
-  
-  
-  
  
-  
-  
-<<<<<<< HEAD
-
-  mass<- read_csv("massonly.csv")
-=======
->>>>>>> 419ed97f842e21f78fd89da0937d69338a830b5d
   
   
   #Note for later move above function and it will only be slow the first load not every load
