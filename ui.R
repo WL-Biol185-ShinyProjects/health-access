@@ -24,7 +24,9 @@ dashboardPage(
   dashboardBody(
     tabItems(
       # First tab content
-      tabItem(tabName = "Welcome"),
+      tabItem(
+        tabName = "Welcome",
+      ), 
       
       # Second tab content
       tabItem(
@@ -33,6 +35,7 @@ dashboardPage(
         column(12, 
                leafletOutput("massachussetsMap"))
         )),
+
       # Third tab content 
       tabItem(
         tabName = "Alabama", 
@@ -55,16 +58,16 @@ dashboardPage(
             ),
            mainPanel(
              leafletOutput("Nationmap")) 
-          ))), #if you add another ) here thats what you need but it gets rid of the primary map,
+          ))), 
+      #if you add another ) here thats what you need but it gets rid of the primary map,
       
       tabItem(
         tabName = "Primary Care", 
         fluidRow(
           column(12, 
                  leafletOutput("primaryMap"))
-        )),
+        )), 
       tabItem(tabName = "Preventable Hospital Stays") 
-    
-    )
-  )
+)
+)
 )

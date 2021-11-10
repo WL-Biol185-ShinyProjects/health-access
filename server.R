@@ -16,9 +16,9 @@ function(input, output) {
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
-<<<<<<< HEAD
+
   bystateavgs <- read_csv("bystateavgs.csv")
-=======
+
   stateavg_only <- read_csv("stateavg_only.csv")
   
   
@@ -26,7 +26,7 @@ function(input, output) {
   #Trim data table for counties 
   Massachussetts <- 25
   
->>>>>>> 8ad7770efb5a79b92d1c3193e68d93c44d58fa1e
+
   mass<- read_csv("massonly.csv")
   
   
