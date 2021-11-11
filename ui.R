@@ -15,8 +15,8 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),   
       menuItem("National", tabName = "National", icon = icon("map-marked")), 
-      menuItem("Ratios of Primary Care Physicians", tabName = "Primary Care Providers"),
-      menuItem("Preventable Hospital Stays", tabName = "Preventable Hospital Stays")
+      menuItem("Ratios of Primary Care Physicians", tabName = "PrimaryCareProviders"),
+      menuItem("Preventable Hospital Stays", tabName = "PreventableHospitalStays")
     )
   ),
   
@@ -54,12 +54,15 @@ dashboardPage(
               )
             ),
            mainPanel(
-             leafletOutput("Nationmap")) 
-          ))), #if you add another ) here thats what you need but it gets rid of the primary map,
+             leafletOutput("Nationmap")))
+          )),
       tabItem(
-        tabName = "Primary Care Providers", 
+        tabName = "PrimaryCareProviders", 
         fluidRow()),
-      tabItem(tabName = "Preventable Hospital Stays") 
+      tabItem(
+        tabName = "PreventableHospitalStays"
+        ) 
+      )
+      )
     )
-  )
-)
+
