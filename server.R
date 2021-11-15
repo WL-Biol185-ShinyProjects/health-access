@@ -38,7 +38,6 @@ function(input, output) {
 
   bystateavgs <- read_csv("bystateavgs.csv")
   stateavg_only <- read_csv("stateavg_only.csv")
-
   
   #Note for later move above function and it will only be slow the first load not every load
   
