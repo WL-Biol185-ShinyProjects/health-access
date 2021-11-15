@@ -15,8 +15,7 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),   
       menuItem("National", tabName = "National", icon = icon("map-marked")), 
-      menuItem("Ratios of Primary Care Physicians", tabName = "PrimaryCareProviders"),
-      menuItem("Preventable Hospital Stays", tabName = "PreventableHospitalStays")
+      menuItem("References", tabName = "References")
     )
   ),
   
@@ -81,7 +80,8 @@ dashboardPage(
               selectInput(
                 "natvariable", "Variable:",
                 choices = c("pct_uninsured",
-                            "num_ratio_primary_cp"),
+                            "num_ratio_primary_cp",
+                            "num_ratio_mental_health"),
                 selected = 1
               )
             ),
@@ -89,10 +89,7 @@ dashboardPage(
              leafletOutput("Nationmap")))
           )),
       tabItem(
-        tabName = "PrimaryCareProviders", 
-        fluidRow()),
-      tabItem(
-        tabName = "PreventableHospitalStays"
+        tabName = "References"
         ) 
       )
       )

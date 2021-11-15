@@ -17,6 +17,8 @@ function(input, output) {
         labeled <- "Percent Uninsured"
       }else if (input$natvariable == "num_ratio_primary_cp"){
         labeled<- "Ratio of Population to Primary Care Providers"
+      }else if (input$natvariable == "num_ratio_mental_health"){
+        labeled<-"Ratio of Population to Mental Health Care Providers"
       }
     }
   )
@@ -27,6 +29,8 @@ function(input, output) {
         suffixed <- "%"
       }else if (input$natvariable == "num_ratio_primary_cp"){
         suffixed<- ":1"
+      }else if (input$natvariable == "num_ratio_mental_health"){
+        suffixed <- ":1"
       }
     }
   )
