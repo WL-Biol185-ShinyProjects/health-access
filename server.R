@@ -16,9 +16,9 @@ function(input, output) {
       if(input$natvariable == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$natvariable == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px:text-align:center"), p("Primary Care Providers")) 
+        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers")) 
       }else if (input$natvariable == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px:text-align:center"), p("Mental Health Care Providers"))
+        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
       }
     }
   )
@@ -40,9 +40,9 @@ function(input, output) {
       if(input$MASS == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$MASS == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px:text-align:center"), p("Primary Care Providers")) 
+        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers")) 
       }else if (input$MASS == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px:text-align:center"), p("Mental Health Care Providers"))
+        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
       }
     }
   )
@@ -64,9 +64,9 @@ function(input, output) {
       if(input$AL == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$AL == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px:text-align:center"), p("Primary Care Providers")) 
+        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers")) 
       }else if (input$AL == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px:text-align:center"), p("Mental Health Care Providers"))
+        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
       }
     }
   )
