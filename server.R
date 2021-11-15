@@ -30,16 +30,14 @@ function(input, output) {
       }
     }
   )
+
   #Importing GeoSpatial Data
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
 
   bystateavgs <- read_csv("bystateavgs.csv")
-
   stateavg_only <- read_csv("stateavg_only.csv")
- 
-  
   
   #Note for later move above function and it will only be slow the first load not every load
   
@@ -52,6 +50,7 @@ function(input, output) {
   maGEO@data <- madata
   mass<- read_csv("massonly.csv")
   al <- read_csv("alonly.csv")
+
   alabama <- "01"
   alabamadata <- alGEO@data[which(alGEO@data$STATE == alabama),]
   alGEO@polygons[which(alGEO@data$STATE!= alabama)] <- NULL
@@ -115,7 +114,7 @@ function(input, output) {
     #joining data 
     statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
     pal<- colorBin("Blues", domain = statesGEO@data[[input$natvariable]])
-    
+
     leaflet(statesGEO) %>%
       setView(-96, 37.8, 5) %>%
       addPolygons(weight = 2, opacity = 1, color = "white",
