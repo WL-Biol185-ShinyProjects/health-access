@@ -41,21 +41,21 @@ national_num_primary_cp<- mean(bystate$mean_num_primary_cp_by_state)
 national_rate_primary_cp<- mean(bystate$mean_rate_primary_cp_by_state)
 national_ratio_primary_cp<- mean(bystate$mean_ratio_primary_cp)
 national_adult_obesity <- mean(bystate$mean_adult_obesity)
-model1<- lm(preventable_hr ~ pct_uninsured, data = renamed)
-model2<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp, data = renamed)
-model3<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp, data = renamed)
-model4<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp, data = renamed)
-model5<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity, data = renamed)
-model6<-  lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity + pct_highschool_completed , data = renamed)
-model7<-  lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity + pct_highschool_completed +state, data = renamed)
-
-model10<- lm(preventable_hr ~ state, data = renamed)
-summary(model6)
-model11<- lm(preventable_hr ~ state + pct_uninsured, data = renamed)
-
-model12<-  lm(preventable_hr ~ state + pct_uninsured + adult_obesity, data = renamed)
-
-stargazer(model1, model2, model3, model4, model5, model6, model7, type = "html", out = "regression.html" ,title = "My regression models")
+# model1<- lm(preventable_hr ~ pct_uninsured, data = renamed)
+# model2<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp, data = renamed)
+# model3<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp, data = renamed)
+# model4<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp, data = renamed)
+# model5<- lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity, data = renamed)
+# model6<-  lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity + pct_highschool_completed , data = renamed)
+# model7<-  lm(preventable_hr ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity + pct_highschool_completed +state, data = renamed)
+# 
+# model10<- lm(preventable_hr ~ state, data = renamed)
+# summary(model6)
+# model11<- lm(preventable_hr ~ state + pct_uninsured, data = renamed)
+# 
+# model12<-  lm(preventable_hr ~ state + pct_uninsured + adult_obesity, data = renamed)
+# 
+# stargazer(model1, model2, model3, model4, model5, model6, model7, type = "html", out = "regression.html" ,title = "My regression models")
 additonalmeasuredata2021 <- read_excel("2021countyhealthranking_additonalmeasuredata.xlsx", skip = 1)
 glimpse(additonalmeasuredata2021)
 limited_additionalmeasure <- additonalmeasuredata2021[c('FIPS', 'Population', '% Black', '% American Indian & Alaska Native', '% Asian', '% Native Hawaiian/Other Pacific Islander', '% Hispanic', '% Non-Hispanic White', '% Not Proficient in English', 'Population')]
@@ -86,9 +86,24 @@ View(mass_al_data)
 write_csv(mass_al_data, "mass_al_data.csv")
 
 
-
-
-
+model1<- lm(num_ratio_primary_cp ~ pct_uninsured, data = combined_data)
+model2<- lm(num_ratio_primary_cp ~ pct_uninsured  + state, data = combined_data)
+model3<- lm(num_ratio_primary_cp ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp, data = combined_data)
+model4<- lm(num_ratio_primary_cp ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp, data = combined_data)
+model5<- lm(num_ratio_primary_cp ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity, data = combined_data)
+model6<-  lm(num_ratio_primary_cp ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity + pct_highschool_completed , data = combined_data)
+model7<-  lm(num_ratio_primary_cp ~ pct_uninsured + num_ratio_primary_cp + num_primary_cp + rate_primary_cp + adult_obesity + pct_highschool_completed +state, data = combined_data)
+model10<- lm(num_ratio_primary_cp ~ state, data = combined_data)
+model11<- lm(num_ratio_primary_cp ~ state + pct_uninsured, data = combined_data)
+model12<-  lm(num_ratio_primary_cp ~ state + pct_uninsured + adult_obesity, data = combined_data)
+model13<-  lm(num_ratio_primary_cp ~ pct_uninsured + state + adult_obesity  + `% Black` + `% Non-Hispanic White`, data = combined_data)
+summary(model10)
+summary(model11)
+summary(model12)
+summary(model13)
+stargazer(model1, model2, model3, model4, model5, model6, model7, type = "html", out = "regression.html" ,title = "My regression models")
+almodel1<- lm(num_ratio_primary_cp ~ pct_uninsured + county, data = al_combined_data)
+summary(almodel1)
 
 
 
