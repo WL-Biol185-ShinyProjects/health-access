@@ -92,7 +92,7 @@ dashboardPage(
           ),
           mainPanel(
             leafletOutput("alabamaMap"),
-            plotOutpu("ALhist")
+            plotOutput("ALhist")
           )
         ))),
       
@@ -106,31 +106,31 @@ dashboardPage(
                 choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                 selected = 1
               ),
-              selectInput(
-                "STATEdrop", "State",
-                choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
-                            "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
-                            "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
-                            "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-                            "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-                            "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota",
-                            "Ohio", Oklahoma
-                            Oregon
-                            PennsylvaniaRhode Island
-                            South Carolina
-                            South Dakota
-                            Tennessee
-                            Texas
-                            Utah
-                            Vermont
-                            Virginia
-                            Washington
-                            West Virginia
-                            Wisconsin
-                            Wyoming),
-                multiple = TRUE
-              )
-            ),
+             # selectInput(
+             #   "STATEdrop", "State",
+             #   choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
+             #               "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
+              #              "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+             #               "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+             #               "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+              #              "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota",
+              #              "Ohio", Oklahoma
+              #              Oregon
+              #              PennsylvaniaRhode Island
+              #              South Carolina
+              #              South Dakota
+              #              Tennessee
+              #              Texas
+              #              Utah
+              #              Vermont
+              #              Virginia
+              #              Washington
+              #              West Virginia
+              #              Wisconsin
+              #              Wyoming),
+              #  multiple = TRUE
+            #  )
+      #      ),
            mainPanel(
              leafletOutput("Nationmap")))
           )),
@@ -139,6 +139,6 @@ dashboardPage(
         ) 
       )
       )
-)
+) 
 
 
