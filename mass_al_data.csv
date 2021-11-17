@@ -1,0 +1,3 @@
+FIPS,state,county,preventable_hr,pct_uninsured,num_primary_cp,rate_primary_cp,ratio_primary_cp,adult_obesity,pct_highschool_completed,num_ratio_mental_health,num_ratio_primary_cp,Population,% Black,% American Indian & Alaska Native,% Asian,% Native Hawaiian/Other Pacific Islander,% Hispanic,% Non-Hispanic White,% Not Proficient in English,Population.1
+01000,Alabama,NA,5466,11.88465474,3187,65.20221,1534:1,36.1,86.180698653,923,1534,4903185,26.467999882,0.7097223539,1.5034105383,0.1042179726,4.5537339505,65.280588026,1.1006831021,4903185
+25000,Massachusetts,NA,4764,3.2757709457,7133,103.34462,968:1,25,90.757563812,153,968,6892503,7.3377842563,0.4977872335,7.2182340726,0.1075081143,12.403433121,71.059816731,4.5709732451,6892503
