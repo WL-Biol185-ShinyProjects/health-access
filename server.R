@@ -101,6 +101,9 @@ function(input, output) {
   maGEO@data <- madata
   mass<- read_csv("massonly.csv")
   al <- read_csv("alonly.csv")
+  
+  #Import data for mass vs al histogram 
+  massvsal <- read_csv("mass_al_data.csv")
 
   alabama <- "01"
   alabamadata <- alGEO@data[which(alGEO@data$STATE == alabama),]
@@ -190,7 +193,7 @@ function(input, output) {
     
     
   })
-  #Output for priary care      
+  #Output for primary care      
   output$primaryMap <- renderLeaflet({
     #joining data 
     statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
@@ -219,6 +222,21 @@ function(input, output) {
       )
   })
   
+  #Output for Alabama Counties Histograms
+  output$ALhist <- al$pct_uninsured
+  hist(ALhist, 
+       main = "Percent Uninsured per County in Alabama", 
+       xlab = "County",
+       ylab = "Percent Uninsured", 
+       col = "green")
+
+#Output for Massachussets Counties Histograms
+  output$MASShist <- ma$pct_uninsured
+  hist(MASShist, 
+       main = "Percent Uninsured per County in Masssachussetts", 
+       xlab = "county", 
+       ylab = "Percent Uninsured", 
+       col = "orange")
 }
 
 
