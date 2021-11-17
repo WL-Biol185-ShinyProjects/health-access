@@ -223,20 +223,12 @@ function(input, output) {
   })
   
   #Output for Alabama Counties Histograms
-  output$ALhist <- al$pct_uninsured
-  hist(ALhist, 
-       main = "Percent Uninsured per County in Alabama", 
-       xlab = "County",
-       ylab = "Percent Uninsured", 
-       col = "green")
+  #output$ALhist <- renderPlot({
+   # ggplot( aes(x=pct_uninsured)) + geom_histogram()
+  #})
 
 #Output for Massachussets Counties Histograms
-  output$MASShist <- ma$pct_uninsured
-  hist(MASShist, 
-       main = "Percent Uninsured per County in Masssachussetts", 
-       xlab = "county", 
-       ylab = "Percent Uninsured", 
-       col = "orange")
+  
 }
 
 
