@@ -6,6 +6,12 @@ dashboardBody(
     # First tab content
     tabItem(tabName = "Welcome", 
             fluidRow(
+              column(8, allign = "center", offset = 2, 
+                     tags$head(tags$style(type="text/css", 
+                                          ".header1_type {color: black; 
+                                          font-size: 40px;
+                                          text-align: center;}"
+                                          )), 
               tags$u(div(class = "header1_type"), 
                      p(strong("Goals"))
                      ), 
@@ -23,6 +29,10 @@ dashboardBody(
                         the accessibility gap between these two locations.")), 
               br(), 
               br(), 
+              tags$div(class = "pic2_type", 
+                       img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg",
+                           height = 200, width = 400, align = "center")), 
+              br(), 
               tags$div(class = "body2_type", 
                        p("Identifying states and counties with low and healthcare accessibility is the first step 
                          in creating a long-term plan to address this issue. Future analysis can focus on the 
@@ -32,8 +42,12 @@ dashboardBody(
               tags$u(div(class = "header2_type"), 
                      p(strong("Want to Learn More"))
               ), 
+              br(),
               tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation", "Source of Nationwide and Statewide Health Data"), 
-              tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/", "Acccess to Healthcare during COVID-19") 
+              br(), 
+              tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/", "Acccess to Healthcare during COVID-19"), 
+              br(), 
+              tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759", "American Heart Association's Reccommended Healthcare Reforms"),
     
   ))
-  ))
+  ))) 
