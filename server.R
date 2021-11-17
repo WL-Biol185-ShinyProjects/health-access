@@ -16,7 +16,9 @@ function(input, output) {
       if(input$natvariable == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$natvariable == "num_ratio_primary_cp"){
-        labeled<- "Ratio of Population to Primary Care Providers"
+        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers")) 
+      }else if (input$natvariable == "num_ratio_mental_health"){
+        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
       }
     }
   )
@@ -27,10 +29,59 @@ function(input, output) {
         suffixed <- "%"
       }else if (input$natvariable == "num_ratio_primary_cp"){
         suffixed<- ":1"
+      }else if (input$natvariable == "num_ratio_mental_health"){
+        suffixed <- ":1"
       }
     }
   )
-
+  MASSlabeled<- reactive(
+    {
+      req(input$MASS)
+      if(input$MASS == "pct_uninsured"){
+        labeled <- "Percent Uninsured"
+      }else if (input$MASS == "num_ratio_primary_cp"){
+        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers")) 
+      }else if (input$MASS == "num_ratio_mental_health"){
+        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
+      }
+    }
+  )
+  MASSsuffixed<- reactive(
+    {
+      req(input$MASS)
+      if(input$MASS == "pct_uninsured"){
+        suffixed <- "%"
+      }else if (input$MASS == "num_ratio_primary_cp"){
+        suffixed<- ":1"
+      }else if (input$MASS == "num_ratio_mental_health"){
+        suffixed <- ":1"
+      }
+    }
+  )
+  ALlabeled<- reactive(
+    {
+      req(input$AL)
+      if(input$AL == "pct_uninsured"){
+        labeled <- "Percent Uninsured"
+      }else if (input$AL == "num_ratio_primary_cp"){
+        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers")) 
+      }else if (input$AL == "num_ratio_mental_health"){
+        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
+      }
+    }
+  )
+  ALsuffixed<- reactive(
+    {
+      req(input$AL)
+      if(input$AL == "pct_uninsured"){
+        suffixed <- "%"
+      }else if (input$AL == "num_ratio_primary_cp"){
+        suffixed<- ":1"
+      }else if (input$AL == "num_ratio_mental_health"){
+        suffixed <- ":1"
+      }
+    }
+  )
   #Importing GeoSpatial Data
   maGEO <- rgdal::readOGR("testing.json")
   alGEO <- rgdal::readOGR("testing.json")
@@ -59,25 +110,25 @@ function(input, output) {
   #Output  function for Massachussetts state & county map
   output$massachussetsMap <- renderLeaflet({
     maGEO@data <- left_join(maGEO@data, mass, by = c("NAME"="county"))
-    pal<- colorBin("Blues", domain = maGEO@data$pct_uninsured)
+    pal<- colorBin("Blues", domain = maGEO@data[[input$MASS]])
     leaflet(maGEO) %>%
       setView(-71.3824, 42.4072, zoom = 7) %>%
       addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
                   opacity = 1.0, fillOpacity = 0.7, 
-                  fillColor = ~pal(pct_uninsured),
+                  fillColor = ~pal(maGEO@data[[input$MASS]]),
                   highlightOptions = highlightOptions(
                     weight = 5,
                     color = "#666",
                     dashArray = "",
                     fillOpacity = 0.7,
                     bringToFront = TRUE),
-                  label = ~paste0(NAME, ": ", formatC(maGEO@data$pct_uninsured))) %>%
+                  label = ~paste0(NAME, ": ", formatC(maGEO@data[[input$MASS]]))) %>%
       addLegend("bottomright",
                 pal = pal, 
-                values = ~(maGEO@data$pct_uninsured), 
+                values = ~(maGEO@data[[input$MASS]]), 
                 opacity = 0.8,
-                title = "Percent Uninsured by County", 
-                labFormat = labelFormat(suffix = "%")
+                title = MASSlabeled(), 
+                labFormat = labelFormat(suffix = MASSsuffixed())
                 
       )
     
@@ -86,25 +137,25 @@ function(input, output) {
   #Output function for Alabama state & county map
   output$alabamaMap <- renderLeaflet({
     alGEO@data<- left_join(alGEO@data, al, by = c("NAME"= "county"))
-    pal<- colorBin("Blues", domain = alGEO@data$pct_uninsured)
+    pal<- colorBin("Blues", domain = alGEO@data[[input$AL]])
     leaflet(alGEO) %>%
-    setView(-86.9023, 32.3182, zoom = 7) %>% 
+    setView(-86.9023, 32.3182, zoom = 6.37) %>% 
     addPolygons(weight = 2, smoothFactor = 0.5, dashArray = "3",
                 opacity = 1.0, fillOpacity = 0.7,
-                fillColor = ~pal(pct_uninsured),
+                fillColor = ~pal(alGEO@data[[input$AL]]),
                 highlightOptions = highlightOptions(
                   weight = 5,
                   color = "666", 
                   dashArray = "", 
                   fillOpacity = 0.7, 
                   bringToFront = TRUE),
-                label = ~paste0(NAME, ":", formatC(alGEO@data$pct_uninsured))) %>%
+                label = ~paste0(NAME, ":", formatC(alGEO@data[[input$AL]]))) %>%
       addLegend("bottomright",
                 pal = pal,
-                values = ~(alGEO@data$pct_uninsured), 
+                values = ~(alGEO@data[[input$AL]]), 
                 opacity = 0.8,
-                title = "Percent Uninsured by County", 
-                labFormat = labelFormat(suffix = "%")
+                title = ALlabeled(), 
+                labFormat = labelFormat(suffix = ALsuffixed())
         
       )
   })
@@ -116,7 +167,7 @@ function(input, output) {
     pal<- colorBin("Blues", domain = statesGEO@data[[input$natvariable]])
 
     leaflet(statesGEO) %>%
-      setView(-96, 37.8, 5) %>%
+      setView(-95, 36.8, 4) %>%
       addPolygons(weight = 2, opacity = 1, color = "white",
                   dashArray = "3", fillOpacity = 0.7, 
                   fillColor = ~pal(statesGEO@data[[input$natvariable]]),

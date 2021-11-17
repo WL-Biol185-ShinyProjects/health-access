@@ -15,8 +15,7 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),   
       menuItem("National", tabName = "National", icon = icon("map-marked")), 
-      menuItem("Ratios of Primary Care Physicians", tabName = "PrimaryCareProviders"),
-      menuItem("Preventable Hospital Stays", tabName = "PreventableHospitalStays")
+      menuItem("References", tabName = "References")
     )
   ),
   
@@ -67,17 +66,34 @@ dashboardPage(
       tabItem(
         tabName = "Massachussets", 
         fluidRow(
-        column(12, 
-               leafletOutput("massachussetsMap"))
+          sidebarLayout(
+            sidebarPanel(
+              selectInput("MASS", "Variable:", 
+                          choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                          selected = 1
+                          )
+            ),
+            mainPanel(
+              leafletOutput("massachussetsMap")
+            )
+          )
         )),
 
       # Third tab content 
       tabItem(
         tabName = "Alabama", 
         fluidRow(
-          column(12, 
-                 leafletOutput("alabamaMap"))
-        )),
+          sidebarLayout(
+            sidebarPanel(
+              selectInput("AL", "Variable:",
+                          choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                          selected = 1
+            )
+          ),
+          mainPanel(
+            leafletOutput("alabamaMap")
+          )
+        ))),
       
       tabItem(
         tabName = "National",
@@ -86,8 +102,7 @@ dashboardPage(
             sidebarPanel(
               selectInput(
                 "natvariable", "Variable:",
-                choices = c("pct_uninsured",
-                            "num_ratio_primary_cp"),
+                choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                 selected = 1
               )
             ),
@@ -95,10 +110,7 @@ dashboardPage(
              leafletOutput("Nationmap")))
           )),
       tabItem(
-        tabName = "PrimaryCareProviders", 
-        fluidRow()),
-      tabItem(
-        tabName = "PreventableHospitalStays"
+        tabName = "References"
         ) 
       )
       )

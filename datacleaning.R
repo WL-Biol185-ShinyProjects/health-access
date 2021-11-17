@@ -3,7 +3,7 @@ library(dplyr)
 library(tidyverse)
 library(stargazer)
 ranked_measure <- read_excel("countyhealthrankings_rankedmeasureonly.xlsx", sheet = "Ranked Measure Data", skip = 1)
-limited_data <- ranked_measure[c('FIPS', 'State', 'County', 'Preventable Hospitalization Rate', '% Uninsured', '# Primary Care Physicians', 'Primary Care Physicians Rate', 'Primary Care Physicians Ratio', '% Adults with Obesity', '% Completed High School')]
+limited_data <- ranked_measure[c('FIPS', 'State', 'County', 'Preventable Hospitalization Rate', '% Uninsured', '# Primary Care Physicians', 'Primary Care Physicians Rate', 'Primary Care Physicians Ratio', '% Adults with Obesity', '% Completed High School', 'Mental Health Provider Ratio')]
 view(limited_data)
 class(limited_data$`% Adults with Obesity`)
 renamed<-
@@ -17,8 +17,11 @@ renamed<-
     ratio_primary_cp = `Primary Care Physicians Ratio`,
     ratio_primary_cp = `Primary Care Physicians Ratio`,
     adult_obesity = `% Adults with Obesity`,
-    pct_highschool_completed = `% Completed High School`)
+    pct_highschool_completed = `% Completed High School`,
+    num_ratio_mental_health = `Mental Health Provider Ratio`
+    )
 renamed$num_ratio_primary_cp<-as.numeric(substring(renamed$ratio_primary_cp, 1, nchar(renamed$ratio_primary_cp) -2))
+renamed$num_ratio_mental_health<-as.numeric(substring(renamed$num_ratio_mental_health, 1, nchar(renamed$num_ratio_mental_health) -2))
 glimpse(renamed)
 #state averages 
 bystate<- renamed %>%
