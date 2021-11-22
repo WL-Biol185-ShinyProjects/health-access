@@ -25,16 +25,12 @@ dashboardPage(
       # First tab content
       tabItem(tabName = "Welcome", 
               fluidRow(
-                       tags$u(div(class = "header1_type"), 
-                              p(strong("Goals"))
-                       ), 
+                       tags$h2(tags$div(tags$b(tags$u("Goals"))), align = "center"), 
                        br(), 
-                       tags$div(class = "pic1_type", 
-                                img(src = "https://epsa-online.org/LLeaP/wp-content/uploads/2019/04/access_banner-1920x1008.png",
-                                    height = 200, width = 400, align = "center")), 
-                       br(), 
-                       tags$div(class = "body1_type", 
-                                p("Health care accessibility is a complex topic that is influenced by various socio-economic 
+                       tags$div(img(src = "https://epsa-online.org/LLeaP/wp-content/uploads/2019/04/access_banner-1920x1008.png",
+                                    height = 200, width = 400), align = "center"),
+                       br(),
+                       tags$div(p("Health care accessibility is a complex topic that is influenced by various socio-economic 
                        factors.The goal of this app is to provide an overview of the percentage of insured adults that
                        reside in each state and the number of primary physicians available in each state. A state with
                        relatively high and relatively low healthcare access based on these two factors were also identified. 
@@ -42,19 +38,15 @@ dashboardPage(
                         the accessibility gap between these two locations.")), 
                        br(), 
                        br(), 
-                       tags$div(class = "pic2_type", 
-                                img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg", 
-                                    height = 200, width = 400, align = "center")), 
+                       tags$div(img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg", 
+                                    height = 200, width = 400), align = "center"), 
                        br(), 
-                       tags$div(class = "body2_type", 
-                                p("Identifying states and counties with low and healthcare accessibility is the first step 
+                       tags$div(p("Identifying states and counties with low and healthcare accessibility is the first step 
                          in creating a long-term plan to address this issue. Future analysis can focus on the 
                          causative factors behind these trends. Studying policies and environmental factors within
                          high healthcare access areas could also help form strategies that can be implemented in low
                          access areas to improve quality of care.")),
-                       tags$u(div(class = "header2_type"), 
-                              p(strong("Want to Learn More"))
-                       ), 
+                       tags$u(div(h3(strong("Want to Learn More")))), 
                        br(),
                        tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation", "Source of Nationwide and Statewide Health Data"), 
                        br(), 
@@ -66,6 +58,7 @@ dashboardPage(
       tabItem(
         tabName = "Massachussets", 
         fluidRow(
+          titlePanel(h1("Massachussets", align = "center")),
           sidebarLayout(
             sidebarPanel(
               selectInput("MASS", "Select Variable:", 
@@ -94,6 +87,7 @@ dashboardPage(
       tabItem(
         tabName = "Alabama", 
         fluidRow(
+          titlePanel(h1("Alabama", align = "center")),
           sidebarLayout(
             sidebarPanel(
               selectInput("AL", "Select Variable:",
@@ -102,7 +96,7 @@ dashboardPage(
                                       "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                           selected = 1
                           ),
-            selectInput(
+              selectInput(
               "ALdrop", "Select County",
               choices = c("Jefferson", "Mobile", "Montgomery", "Autauga", "Baldwin", 
                           "Barbour", "Bibb", "Blount", "Bullock", "Butler", "Calhoun", 
@@ -130,11 +124,14 @@ dashboardPage(
       tabItem(
         tabName = "National",
         fluidRow(
+          titlePanel(h1("National Data", align = "center")),
           sidebarLayout(
             sidebarPanel(
               selectInput(
                 "natvariable", "Select Variable:",
-                choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                choices = c("Percent Uninsured" = "pct_uninsured",
+                            "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                            "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                 selected = 1
               ),
               selectInput(
