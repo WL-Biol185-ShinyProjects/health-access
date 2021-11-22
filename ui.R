@@ -68,16 +68,26 @@ dashboardPage(
         fluidRow(
           sidebarLayout(
             sidebarPanel(
-              selectInput("MASS", "Variable:", 
-                          choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+              selectInput("MASS", "Select Variable:", 
+                          choices = c("Percent Uninsured" = "pct_uninsured",
+                                      "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                      "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                           selected = 1
+                          ),
+              selectInput("MASSDrop", "Select County:",
+                          choices = c("Barnstable", "Berkshire", "Bristol", "Dukes", "Essex", 
+                                      "Franklin", "Hampden", "Hampshire", "Middlesex", 
+                                      "Nantucket", "Norfolk", "Plymouth", "Suffolk", 
+                                      "Worcester"),
+                          multiple = TRUE
                           )
-            ),
+              ),
             mainPanel(
               leafletOutput("massachussetsMap")
+              )
             )
           )
-        )),
+        ),
 
       # Third tab content 
       tabItem(
@@ -85,16 +95,36 @@ dashboardPage(
         fluidRow(
           sidebarLayout(
             sidebarPanel(
-              selectInput("AL", "Variable:",
-                          choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+              selectInput("AL", "Select Variable:",
+                          choices = c("Percent Uninsured" = "pct_uninsured",
+                                      "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                      "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                           selected = 1
-            )
-          ),
+                          ),
+            selectInput(
+              "ALdrop", "Select County",
+              choices = c("Jefferson", "Mobile", "Montgomery", "Autauga", "Baldwin", 
+                          "Barbour", "Bibb", "Blount", "Bullock", "Butler", "Calhoun", 
+                          "Chambers", "Cherokee", "Chilton", "Choctaw", "Clarke", "Clay", 
+                          "Cleburne", "Coffee", "Colbert", "Conecuh", "Coosa", "Covington", 
+                          "Crenshaw", "Cullman", "Dale", "Dallas", "DeKalb", "Elmore", 
+                          "Escambia", "Etowah", "Fayette", "Franklin", "Geneva", "Greene", 
+                          "Hale", "Henry", "Houston", "Jackson", "Lamar", "Lauderdale", 
+                          "Lawrence", "Lee", "Limestone", "Lowndes", "Macon", "Madison",
+                          "Marengo", "Marion", "Marshall", "Monroe", "Morgan", "Perry",
+                          "Pickens", "Pike", "Randolph", "Russell", "Shelby", "Saint Clair",
+                          "Sumter", "Talladega", "Tallapoosa", "Tuscaloosa", "Walker",
+                          "Washington", "Wilcox", "Winston"),
+              multiple = TRUE
+              )
+            ),
           mainPanel(
             leafletOutput("alabamaMap"),
             plotOutput("ALhist")
+            )
           )
-        ))),
+        )
+      ),
       
       tabItem(
         tabName = "National",
@@ -102,12 +132,12 @@ dashboardPage(
           sidebarLayout(
             sidebarPanel(
               selectInput(
-                "natvariable", "Variable:",
+                "natvariable", "Select Variable:",
                 choices = c("Percent Uninsured" = "pct_uninsured","Ratio of Population to Primary Care Providers"= "num_ratio_primary_cp","Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                 selected = 1
               ),
               selectInput(
-                "STATEdrop", "State",
+                "STATEdrop", "Select State(s)",
                 choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
                             "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
                             "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -122,13 +152,16 @@ dashboardPage(
               )
             ),
            mainPanel(
-             leafletOutput("Nationmap")))
-          )),
+    leafletOutput("Nationmap")
+           )
+          )
+        )
+      ),
       tabItem(
         tabName = "References"
-        ) 
-      )
-      )
+      ) 
+    )
+  )
 ) 
 
 
