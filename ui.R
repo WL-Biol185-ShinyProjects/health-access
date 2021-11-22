@@ -83,7 +83,8 @@ dashboardPage(
                           )
               ),
             mainPanel(
-              leafletOutput("massachussetsMap")
+              leafletOutput("massachussetsMap"),
+              plotOutput("MASShist")
               )
             )
           )
@@ -152,7 +153,8 @@ dashboardPage(
               )
             ),
            mainPanel(
-    leafletOutput("Nationmap")
+             leafletOutput("Nationmap"),
+             plotOutput("STATEhist")
            )
           )
         )
