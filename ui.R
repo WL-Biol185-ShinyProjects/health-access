@@ -67,23 +67,29 @@ dashboardPage(
                                       "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                       "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                           selected = 1
-                          ),
-              selectInput("MASSDrop", "Select County:",
-                          choices = c("Barnstable", "Berkshire", "Bristol", "Dukes", "Essex", 
-                                      "Franklin", "Hampden", "Hampshire", "Middlesex", 
-                                      "Nantucket", "Norfolk", "Plymouth", "Suffolk", 
-                                      "Worcester"),
-                          multiple = TRUE
                           )
               ),
             mainPanel(
-              leafletOutput("massachussetsMap"),
-              plotOutput("MASSpoint"),
-              plotOutput("ALvsMASS")
-              )
-            )
-          )
-        ),
+              leafletOutput("massachussetsMap", height = "800", width = "1000")
+              )),
+       fluidRow(
+         sidebarLayout(
+         sidebarPanel(
+           selectInput("MASS2", "Select Variable:", 
+                       choices = c("Percent Uninsured" = "pct_uninsured",
+                                   "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                   "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                       selected = 1),
+           selectInput("MASSDrop", "Select County:",
+                        choices = c("Barnstable", "Berkshire", "Bristol", "Dukes", "Essex", 
+                                    "Franklin", "Hampden", "Hampshire", "Middlesex", 
+                                    "Nantucket", "Norfolk", "Plymouth", "Suffolk", 
+                                    "Worcester"),
+                        multiple = TRUE
+         )),
+         mainPanel(
+           plotOutput("MASSbar", height = "800", width = "1000"))))
+        )),
 
       # Third tab content 
       tabItem(
@@ -117,8 +123,7 @@ dashboardPage(
             ),
           mainPanel(
             leafletOutput("alabamaMap"),
-            plotOutput("ALpoint"),
-            plotOutput("ALvsMASS")
+            plotOutput("ALpoint")
             )
           )
         )

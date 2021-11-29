@@ -224,29 +224,33 @@ function(input, output) {
   })
   
   #Output for Alabama Counties Point Graph
-  output$ALpoint <- renderPlot({
-    ggplot(al, aes(pct_uninsured, county)) + 
-    geom_segment(aes(x = 0, y = county, xend = pct_uninsured, yend = county)) + 
-    geom_point(color = "lightgreen", size = 2)
+  output$ALbar <- renderPlot({
+    filtered1 <- al %>% filter(county %in% input$ALDrop)
+    ggplot(data = filtered, aes_string(y = filtered1[[input$AL2]], x = "county")) + 
+      geom_bar(stat ="identity") + theme_minimal()
   })
   
+  
+  
+  
   #Output for Massachussetts Counties Point Graph
-  output$MASSpoint <- renderPlot({
-    ggplot(mass, aes(pct_uninsured, county)) + 
-      geom_segment(aes(x = 0, y = county, xend = pct_uninsured, yend = county)) + 
-      geom_point(color = "lightgreen", size = 2)
+  output$MASSbar <- renderPlot({
+    filtered <- mass %>% filter(county %in% input$MASSDrop)
+    ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county")) + 
+      geom_bar(stat ="identity") + theme_minimal()
   })
 
   #Output for AL vs Mass State Bar Graph
   output$ALvsMASS <- renderPlot({
-    ggplot(data = massvsal, aes(x = state, y = pct_uninsured, fill=state)) + 
+    ggplot(data = massvsal, aes_string(x = state, y = massvsal[[input$MASS2]], fill=state)) + 
     geom_bar(stat ="identity") + theme_minimal() + 
       scale_fill_brewer(palette = "Dark2")
   })
   
   #Output for National STATE bar graph 
   output$STATEbar <- renderPlot({
-    ggplot(data = stateavg_only, aes(x=state, y = pct_uninsured)) + geom_bar(stat="identity")
+    filtered2 <- stateavg_only %>% filter(state %in% input$STATEDrop)
+    ggplot(data = stateavg_only, aes_string(x="state", y = filtered2[[input$STATE]])) + geom_bar(stat="identity")
   })
   
 }
