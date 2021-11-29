@@ -46,7 +46,7 @@ dashboardPage(
                            causative factors behind these trends. Studying policies and environmental factors within
                            high healthcare access areas could also help form strategies that can be implemented in low
                            access areas to improve quality of care."))),
-                box(tags$u(h3(strong("Want to Learn More"))), width = 5, solidHeader = TRUE, status = "primary",
+                box(tags$u(h3(strong("Want to Learn More"))), width = 7, solidHeader = TRUE, status = "primary",
                 br(),
                 tags$li(tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation",
                        "Source of Nationwide and Statewide Health Data")), 
@@ -79,7 +79,7 @@ dashboardPage(
             mainPanel(
               leafletOutput("massachussetsMap"),
               plotOutput("MASSpoint"),
-              plotOutput(ALvsMASS)
+              plotOutput("ALvsMASS")
               )
             )
           )
@@ -118,7 +118,7 @@ dashboardPage(
           mainPanel(
             leafletOutput("alabamaMap"),
             plotOutput("ALpoint"),
-            plotOutput(ALvsMASS)
+            plotOutput("ALvsMASS")
             )
           )
         )
