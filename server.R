@@ -89,6 +89,7 @@ function(input, output) {
 
   bystateavgs <- read_csv("bystateavgs.csv")
   stateavg_only <- read_csv("stateavg_only.csv")
+
   
   #Note for later move above function and it will only be slow the first load not every load
   
@@ -222,12 +223,31 @@ function(input, output) {
       )
   })
   
-  #Output for Alabama Counties Histograms
-  #output$ALhist <- renderPlot({
-   # ggplot( aes(x=pct_uninsured)) + geom_histogram()
-  #})
+  #Output for Alabama Counties Point Graph
+  output$ALpoint <- renderPlot({
+    ggplot(al, aes(pct_uninsured, county)) + 
+    geom_segment(aes(x = 0, y = county, xend = pct_uninsured, yend = county)) + 
+    geom_point(color = "lightgreen", size = 2)
+  })
+  
+  #Output for Massachussetts Counties Point Graph
+  output$MASSpoint <- renderPlot({
+    ggplot(mass, aes(pct_uninsured, county)) + 
+      geom_segment(aes(x = 0, y = county, xend = pct_uninsured, yend = county)) + 
+      geom_point(color = "lightgreen", size = 2)
+  })
 
-#Output for Massachussets Counties Histograms
+  #Output for AL vs Mass State Bar Graph
+  output$ALvsMASS <- renderPlot({
+    ggplot(data = massvsal, aes(x = state, y = pct_uninsured, fill=state)) + 
+    geom_bar(stat ="identity") + theme_minimal() + 
+      scale_fill_brewer(palette = "Dark2")
+  })
+  
+  #Output for National STATE bar graph 
+  output$STATEbar <- renderPlot({
+    ggplot(data = stateavg_only, aes(x=state, y = pct_uninsured)) + geom_bar(stat="identity")
+  })
   
 }
 
