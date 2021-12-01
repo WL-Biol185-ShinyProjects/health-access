@@ -88,8 +88,25 @@ dashboardPage(
                         multiple = TRUE
          )),
          mainPanel(
-           plotOutput("MASSbar", height = "800", width = "1000"))))
-        )),
+           plotOutput("MASSbar", height = "800", width = "1000")
+           )),
+         fluidRow(
+           sidebarLayout(
+             sidebarPanel(
+               selectInput("VAR2", "Select Variable: ",
+                           choices = c("Percent Uninsured" = "pct_uninsured",
+                                       "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                       "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
+                           selected = 1
+               )), 
+               mainPanel(
+                 plotOutput("ALvsMASS", height = "800", width = "1000")
+               )
+             )
+           )
+         ))
+        ),
+      
 
       # Third tab content 
       tabItem(

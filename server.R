@@ -242,7 +242,7 @@ function(input, output) {
 
   #Output for AL vs Mass State Bar Graph
   output$ALvsMASS <- renderPlot({
-    ggplot(data = massvsal, aes_string(x = state, y = massvsal[[input$MASS2]], fill=state)) + 
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$MASS2]])) + 
     geom_bar(stat ="identity") + theme_minimal() + 
       scale_fill_brewer(palette = "Dark2")
   })
