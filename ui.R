@@ -120,29 +120,39 @@ dashboardPage(
                                       "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                       "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                           selected = 1
-                          ),
-              selectInput(
+                          )
+            ),
+          mainPanel(
+            leafletOutput("alabamaMap")
+            )
+          ),
+          fluidRow(
+            sidebarLayout(
+              sidebarPanel(
+                selectInput("AL2", "Select Variable:",
+                        choices = c("Percent Uninsured" = "pct_uninsured",
+                                    "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                    "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                        selected = 1
+            ), 
+                selectInput(
               "ALdrop", "Select County",
-              choices = c("Jefferson", "Mobile", "Montgomery", "Autauga", "Baldwin", 
+              choices = c("Autauga", "Baldwin", 
                           "Barbour", "Bibb", "Blount", "Bullock", "Butler", "Calhoun", 
                           "Chambers", "Cherokee", "Chilton", "Choctaw", "Clarke", "Clay", 
                           "Cleburne", "Coffee", "Colbert", "Conecuh", "Coosa", "Covington", 
                           "Crenshaw", "Cullman", "Dale", "Dallas", "DeKalb", "Elmore", 
                           "Escambia", "Etowah", "Fayette", "Franklin", "Geneva", "Greene", 
-                          "Hale", "Henry", "Houston", "Jackson", "Lamar", "Lauderdale", 
+                          "Hale", "Henry", "Houston", "Jackson", "Jefferson", "Lamar", "Lauderdale", 
                           "Lawrence", "Lee", "Limestone", "Lowndes", "Macon", "Madison",
-                          "Marengo", "Marion", "Marshall", "Monroe", "Morgan", "Perry",
+                          "Marengo", "Marion", "Marshall", "Mobile", "Monroe", "Montgomery", "Morgan", "Perry",
                           "Pickens", "Pike", "Randolph", "Russell", "Shelby", "Saint Clair",
                           "Sumter", "Talladega", "Tallapoosa", "Tuscaloosa", "Walker",
                           "Washington", "Wilcox", "Winston"),
               multiple = TRUE
-              )
-            ),
-          mainPanel(
-            leafletOutput("alabamaMap"),
-            plotOutput("ALpoint")
-            )
-          )
+            )), 
+            mainPanel(plotOutput("newBAR"))
+          ))
         )
       ),
       

@@ -101,7 +101,7 @@ function(input, output) {
   maGEO@polygons[which(maGEO@data$STATE != Massachussetts)] <- NULL
   maGEO@data <- madata
   mass<- read_csv("massonly.csv")
-  al <- read_csv("alonly.csv")
+  al<- read_csv("alonly.csv")
   
   #Import data for mass vs al histogram 
   massvsal <- read_csv("mass_al_data.csv")
@@ -225,12 +225,16 @@ function(input, output) {
   
   #Output for Alabama Counties Point Graph
   output$ALbar <- renderPlot({
-    filtered1 <- al %>% filter(county %in% input$ALDrop)
-    ggplot(data = filtered, aes_string(y = filtered1[[input$AL2]], x = "county")) + 
+    alfiltered <- al %>% filter(county %in% input$ALDrop)
+    ggplot(data = alfiltered, aes_string(y = alfiltered[[input$AL2]], x = "county")) + 
       geom_bar(stat ="identity") + theme_minimal()
   })
   
-  
+  output$newBAR <- renderPlot({
+    filteredcounty <- al %>% filter(county %in% input$ALdrop)
+    ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county")) + 
+      geom_bar(stat ="identity") + theme_minimal()
+  })
   
   
   #Output for Massachussetts Counties Point Graph
@@ -242,7 +246,7 @@ function(input, output) {
 
   #Output for AL vs Mass State Bar Graph
   output$ALvsMASS <- renderPlot({
-    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$MASS2]])) + 
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]])) + 
     geom_bar(stat ="identity") + theme_minimal() + 
       scale_fill_brewer(palette = "Dark2")
   })
@@ -250,7 +254,7 @@ function(input, output) {
   #Output for National STATE bar graph 
   output$STATEbar <- renderPlot({
     filtered2 <- stateavg_only %>% filter(state %in% input$STATEDrop)
-    ggplot(data = stateavg_only, aes_string(x="state", y = filtered2[[input$STATE]])) + geom_bar(stat="identity")
+    ggplot(data = filtered2, aes_string(x="state", y = filtered2[[input$STATE]])) + geom_bar(stat="identity")
   })
   
 }
