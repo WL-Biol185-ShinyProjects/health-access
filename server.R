@@ -227,13 +227,15 @@ function(input, output) {
   output$ALbar <- renderPlot({
     alfiltered <- al %>% filter(county %in% input$ALDrop)
     ggplot(data = alfiltered, aes_string(y = alfiltered[[input$AL2]], x = "county")) + 
-      geom_bar(stat ="identity") + theme_minimal()
+      geom_bar(stat ="identity") + 
+      scale_fill_brewer(palette = "Blues")
   })
   
   output$newBAR <- renderPlot({
     filteredcounty <- al %>% filter(county %in% input$ALdrop)
     ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county")) + 
-      geom_bar(stat ="identity") + theme_minimal()
+      geom_bar(stat ="identity") + 
+      scale_fill_brewer(palette = "Blues")
   })
   
   
@@ -241,20 +243,27 @@ function(input, output) {
   output$MASSbar <- renderPlot({
     filtered <- mass %>% filter(county %in% input$MASSDrop)
     ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county")) + 
-      geom_bar(stat ="identity") + theme_minimal()
+      geom_bar(stat ="identity") + 
+      scale_fill_brewer(palette = "Blues")
   })
 
   #Output for AL vs Mass State Bar Graph
   output$ALvsMASS <- renderPlot({
-    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]])) + 
-    geom_bar(stat ="identity") + theme_minimal() + 
-      scale_fill_brewer(palette = "Dark2")
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]]),fill="steelblue") + 
+    geom_bar(stat ="identity")
   })
   
   #Output for National STATE bar graph 
   output$STATEbar <- renderPlot({
-    filtered2 <- stateavg_only %>% filter(state %in% input$STATEDrop)
-    ggplot(data = filtered2, aes_string(x="state", y = filtered2[[input$STATE]])) + geom_bar(stat="identity")
+    filtered3 <- stateavg_only %>% filter(state %in% input$statechoice)
+    ggplot(data = filtered3, aes_string(x="state", y = filtered3[[input$variables]])) + 
+      geom_bar(stat="identity") + 
+      scale_fill_brewer(palette = "Blues")
+  })
+  output$ALvsMASS2 <- renderPlot({
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]])) + 
+      geom_bar(stat ="identity") + 
+      scale_fill_brewer(palette = "Blues")
   })
   
 }

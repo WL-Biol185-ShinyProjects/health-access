@@ -151,7 +151,22 @@ dashboardPage(
                           "Washington", "Wilcox", "Winston"),
               multiple = TRUE
             )), 
-            mainPanel(plotOutput("newBAR"))
+            mainPanel(plotOutput("newBAR", height = "800", width = "800"))
+          ),
+          fluidRow(
+            sidebarLayout(
+              sidebarPanel(
+                selectInput("VAR3", "Select Variable: ",
+                  choices = c("Percent Uninsured" = "pct_uninsured",
+                              "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                              "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
+                  selected = 1
+                )
+              ),
+              mainPanel(
+                plotOutput("ALvsMASS2", height = "800", width = "800")
+              )
+            )
           ))
         )
       ),
@@ -168,26 +183,42 @@ dashboardPage(
                             "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                             "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                 selected = 1
+              )),
+            
+            
+             mainPanel(
+               leafletOutput("Nationmap")
+               
+           )),
+          fluidRow(
+            sidebarLayout(
+              sidebarPanel(
+                selectInput(
+                  "variables", "Select Variable:",
+                  choices = c("Percent Uninsured" = "pct_uninsured",
+                              "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                              "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                  selected = 1
+                ),
+                selectInput(
+                  "statechoice", "Select State(s)",
+                  choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
+                              "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
+                              "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+                              "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+                              "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", 
+                              "New Hampshire", "New Jersey", "New Mexico", "New York", 
+                              "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", 
+                              "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
+                              "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", 
+                              "West Virginia", "Wisconsin", "Wyoming"),
+                  multiple = TRUE
+                )
               ),
-              selectInput(
-                "STATEdrop", "Select State(s)",
-                choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
-                            "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
-                            "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
-                            "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-                            "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", 
-                            "New Hampshire", "New Jersey", "New Mexico", "New York", 
-                            "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", 
-                            "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
-                            "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", 
-                            "West Virginia", "Wisconsin", "Wyoming"),
-                multiple = TRUE
-              )
-            ),
-           mainPanel(
-             leafletOutput("Nationmap"),
-             plotOutput("STATEbar")
-           )
+              mainPanel(
+                plotOutput("STATEbar", height = "800", width = "800"))
+            )
+          )
           )
         )
       ),
@@ -196,6 +227,6 @@ dashboardPage(
       ) 
     )
   )
-) 
+
 
 
