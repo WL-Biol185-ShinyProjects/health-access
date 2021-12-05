@@ -226,44 +226,52 @@ function(input, output) {
   #Output for Alabama Counties Point Graph
   output$ALbar <- renderPlot({
     alfiltered <- al %>% filter(county %in% input$ALDrop)
-    ggplot(data = alfiltered, aes_string(y = alfiltered[[input$AL2]], x = "county")) + 
-      geom_bar(stat ="identity") + 
-      scale_fill_brewer(palette = "Blues")
+    ggplot(data = alfiltered, aes_string(y = alfiltered[[input$AL2]], x = "county", fill = alfiltered[[input$AL2]])) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") +
+      theme(text = element_text(size = 14))
   })
   
   output$newBAR <- renderPlot({
     filteredcounty <- al %>% filter(county %in% input$ALdrop)
-    ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county")) + 
-      geom_bar(stat ="identity") + 
-      scale_fill_brewer(palette = "Blues")
+    ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county", fill = filteredcounty[[input$AL2]])) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") +
+      theme(text = element_text(size = 14))
   })
   
   
   #Output for Massachussetts Counties Point Graph
   output$MASSbar <- renderPlot({
     filtered <- mass %>% filter(county %in% input$MASSDrop)
-    ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county")) + 
-      geom_bar(stat ="identity") + 
-      scale_fill_brewer(palette = "Blues")
+    ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county", fill = filtered[[input$MASS2]])) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") +
+      theme(text = element_text(size = 14))
   })
 
   #Output for AL vs Mass State Bar Graph
   output$ALvsMASS <- renderPlot({
-    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]]),fill="steelblue") + 
-    geom_bar(stat ="identity")
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]], fill = "state")) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_manual(values = c("steelblue", "lightblue")) +
+      theme(text = element_text(size = 14))
   })
   
   #Output for National STATE bar graph 
   output$STATEbar <- renderPlot({
     filtered3 <- stateavg_only %>% filter(state %in% input$statechoice)
-    ggplot(data = filtered3, aes_string(x="state", y = filtered3[[input$variables]])) + 
-      geom_bar(stat="identity") + 
-      scale_fill_brewer(palette = "Blues")
+    ggplot(data = filtered3, aes_string(x="state", y = filtered3[[input$variables]], fill = filtered3[[input$variables]])) + 
+      geom_bar(stat="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") + 
+      theme(text = element_text(size = 14))
   })
+  
   output$ALvsMASS2 <- renderPlot({
-    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]])) + 
-      geom_bar(stat ="identity") + 
-      scale_fill_brewer(palette = "Blues")
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]], fill = "state")) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_manual(values = c("steelblue", "lightblue")) +
+      theme(text = element_text(size = 14))
   })
   
 }

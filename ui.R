@@ -62,45 +62,45 @@ dashboardPage(
           titlePanel(h1("Massachussets", align = "center")),
           sidebarLayout(
             sidebarPanel(
-              selectInput("MASS", "Select Variable:", 
-                          choices = c("Percent Uninsured" = "pct_uninsured",
-                                      "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
-                                      "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
-                          selected = 1
-                          )
-              ),
-            mainPanel(
-              leafletOutput("massachussetsMap", height = "800", width = "1000")
+              box(width = 12, 
+                  selectInput("MASS", "Select Variable:", 
+                              choices = c("Percent Uninsured" = "pct_uninsured",
+                                          "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                          "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                              selected = 1)
               )),
-       fluidRow(
-         sidebarLayout(
-         sidebarPanel(
-           selectInput("MASS2", "Select Variable:", 
+            mainPanel(
+              box(width = 12, leafletOutput("massachussetsMap", height = "800"))
+            )),
+        fluidRow(
+          sidebarPanel(
+            box(width = 12,
+               selectInput("MASS2", "Select Variable:", 
                        choices = c("Percent Uninsured" = "pct_uninsured",
                                    "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                    "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                        selected = 1),
-           selectInput("MASSDrop", "Select County:",
+               selectInput("MASSDrop", "Select County:",
                         choices = c("Barnstable", "Berkshire", "Bristol", "Dukes", "Essex", 
                                     "Franklin", "Hampden", "Hampshire", "Middlesex", 
                                     "Nantucket", "Norfolk", "Plymouth", "Suffolk", 
                                     "Worcester"),
                         multiple = TRUE
-         )),
+         ))),
          mainPanel(
-           plotOutput("MASSbar", height = "800", width = "1000")
+           box(width = 12, plotOutput("MASSbar", height = "800")
            )),
          fluidRow(
-           sidebarLayout(
-             sidebarPanel(
-               selectInput("VAR2", "Select Variable: ",
+           sidebarPanel(
+               box(width = 12,
+                   selectInput("VAR2", "Select Variable: ",
                            choices = c("Percent Uninsured" = "pct_uninsured",
                                        "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                        "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
                            selected = 1
-               )), 
+               ))), 
                mainPanel(
-                 plotOutput("ALvsMASS", height = "800", width = "1000")
+                 box(width = 12, plotOutput("ALvsMASS", height = "800")
                )
              )
            )
@@ -115,56 +115,60 @@ dashboardPage(
           titlePanel(h1("Alabama", align = "center")),
           sidebarLayout(
             sidebarPanel(
-              selectInput("AL", "Select Variable:",
-                          choices = c("Percent Uninsured" = "pct_uninsured",
-                                      "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
-                                      "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
-                          selected = 1
-                          )
-            ),
+              box(width = 12, 
+                  selectInput("AL", "Select Variable:", 
+                              choices = c("Percent Uninsured" = "pct_uninsured",
+                                          "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp", 
+                                          "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"), 
+                              selected = 1
+                              )
+                  )
+              ),
           mainPanel(
-            leafletOutput("alabamaMap")
+            box(width = 12, leafletOutput("alabamaMap", height = "800"))
             )
           ),
-          fluidRow(
-            sidebarLayout(
-              sidebarPanel(
-                selectInput("AL2", "Select Variable:",
-                        choices = c("Percent Uninsured" = "pct_uninsured",
-                                    "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
-                                    "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
-                        selected = 1
-            ), 
-                selectInput(
-              "ALdrop", "Select County",
-              choices = c("Autauga", "Baldwin", 
-                          "Barbour", "Bibb", "Blount", "Bullock", "Butler", "Calhoun", 
-                          "Chambers", "Cherokee", "Chilton", "Choctaw", "Clarke", "Clay", 
-                          "Cleburne", "Coffee", "Colbert", "Conecuh", "Coosa", "Covington", 
-                          "Crenshaw", "Cullman", "Dale", "Dallas", "DeKalb", "Elmore", 
-                          "Escambia", "Etowah", "Fayette", "Franklin", "Geneva", "Greene", 
-                          "Hale", "Henry", "Houston", "Jackson", "Jefferson", "Lamar", "Lauderdale", 
-                          "Lawrence", "Lee", "Limestone", "Lowndes", "Macon", "Madison",
-                          "Marengo", "Marion", "Marshall", "Mobile", "Monroe", "Montgomery", "Morgan", "Perry",
-                          "Pickens", "Pike", "Randolph", "Russell", "Shelby", "Saint Clair",
-                          "Sumter", "Talladega", "Tallapoosa", "Tuscaloosa", "Walker",
-                          "Washington", "Wilcox", "Winston"),
-              multiple = TRUE
-            )), 
-            mainPanel(plotOutput("newBAR", height = "800", width = "800"))
-          ),
-          fluidRow(
-            sidebarLayout(
-              sidebarPanel(
-                selectInput("VAR3", "Select Variable: ",
-                  choices = c("Percent Uninsured" = "pct_uninsured",
+        fluidRow(
+          sidebarLayout(
+            sidebarPanel(
+              box(width = 12, 
+                  selectInput("AL2", "Select Variable:", 
+                              choices = c("Percent Uninsured" = "pct_uninsured",
                               "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
-                              "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
-                  selected = 1
-                )
-              ),
+                              "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                        selected = 1), 
+                  selectInput("ALdrop", "Select County", 
+                              choices = c("Autauga", "Baldwin", 
+                              "Barbour", "Bibb", "Blount", "Bullock", "Butler", "Calhoun", 
+                              "Chambers", "Cherokee", "Chilton", "Choctaw", "Clarke", "Clay", 
+                              "Cleburne", "Coffee", "Colbert", "Conecuh", "Coosa", "Covington", 
+                              "Crenshaw", "Cullman", "Dale", "Dallas", "DeKalb", "Elmore", 
+                              "Escambia", "Etowah", "Fayette", "Franklin", "Geneva", "Greene", 
+                              "Hale", "Henry", "Houston", "Jackson", "Jefferson", "Lamar", 
+                              "Lauderdale", "Lawrence", "Lee", "Limestone", "Lowndes", "Macon", 
+                              "Madison", "Marengo", "Marion", "Marshall", "Mobile", "Monroe", 
+                              "Montgomery", "Morgan", "Perry", "Pickens", "Pike", "Randolph", 
+                              "Russell", "Shelby", "Saint Clair", "Sumter", "Talladega", 
+                              "Tallapoosa", "Tuscaloosa", "Walker", "Washington", "Wilcox", 
+                              "Winston"),
+              multiple = TRUE)
+              )), 
+            mainPanel(
+              box(width = 12, plotOutput("newBAR", height = "800"))
+              )
+            ),
+          fluidRow(
+            sidebarLayout(
+              sidebarPanel(
+                box(width = 12, 
+                    selectInput("VAR3", "Select Variable: ",
+                                choices = c("Percent Uninsured" = "pct_uninsured",
+                                            "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                            "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
+                                selected = 1)
+                    )),
               mainPanel(
-                plotOutput("ALvsMASS2", height = "800", width = "800")
+                box(width = 12, plotOutput("ALvsMASS2", height = "800"))
               )
             )
           ))
@@ -177,48 +181,42 @@ dashboardPage(
           titlePanel(h1("National Data", align = "center")),
           sidebarLayout(
             sidebarPanel(
-              selectInput(
-                "natvariable", "Select Variable:",
-                choices = c("Percent Uninsured" = "pct_uninsured",
-                            "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
-                            "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
-                selected = 1
-              )),
-            
-            
+              box(width = 12, selectInput("natvariable", "Select Variable:",
+                                          choices = c("Percent Uninsured" = "pct_uninsured",
+                                                      "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                                      "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                                          selected = 1)
+                  )),
              mainPanel(
-               leafletOutput("Nationmap")
+               box(width = 12, leafletOutput("Nationmap", height = "800"))
                
            )),
           fluidRow(
             sidebarLayout(
               sidebarPanel(
-                selectInput(
-                  "variables", "Select Variable:",
-                  choices = c("Percent Uninsured" = "pct_uninsured",
-                              "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
-                              "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
-                  selected = 1
-                ),
-                selectInput(
-                  "statechoice", "Select State(s)",
-                  choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
-                              "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
-                              "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
-                              "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-                              "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", 
-                              "New Hampshire", "New Jersey", "New Mexico", "New York", 
-                              "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", 
-                              "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
-                              "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", 
-                              "West Virginia", "Wisconsin", "Wyoming"),
-                  multiple = TRUE
-                )
-              ),
+                box(width = 12, 
+                    selectInput("variables", "Select Variable:",
+                                choices = c("Percent Uninsured" = "pct_uninsured",
+                                            "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
+                                            "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
+                                selected = 1),
+                    selectInput("statechoice", "Select State(s)",
+                                choices = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
+                                            "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
+                                            "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+                                            "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+                                            "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", 
+                                            "New Hampshire", "New Jersey", "New Mexico", "New York", 
+                                            "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", 
+                                            "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
+                                            "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", 
+                                            "West Virginia", "Wisconsin", "Wyoming"),
+                                multiple = TRUE)
+                    )),
               mainPanel(
-                plotOutput("STATEbar", height = "800", width = "800"))
+                box(width = 12, plotOutput("STATEbar", height = "800")))
+              )
             )
-          )
           )
         )
       ),
