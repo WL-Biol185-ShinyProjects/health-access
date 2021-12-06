@@ -15,7 +15,7 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")), 
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),   
       menuItem("National", tabName = "National", icon = icon("map-marked")), 
-      menuItem("References", tabName = "References")
+      menuItem("References", tabName = "References"),
     )
   ),
   
@@ -53,7 +53,6 @@ dashboardPage(
                        tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/", "Acccess to Healthcare during COVID-19") 
                        
                 )),
-      
       # Second tab content
       tabItem(
         tabName = "Massachussets", 
@@ -83,7 +82,7 @@ dashboardPage(
           )
         ),
 
-      # Third tab content 
+    #Third tab content
       tabItem(
         tabName = "Alabama", 
         fluidRow(
@@ -121,6 +120,7 @@ dashboardPage(
         )
       ),
       
+      
       tabItem(
         tabName = "National",
         fluidRow(
@@ -156,11 +156,12 @@ dashboardPage(
           )
         )
       ),
+
       tabItem(
-        tabName = "References"
-      ) 
-    )
-  )
-) 
+        tabName = "References", 
+        fluidRow(
+          plotOutput("trial2"))
+        ), 
 
-
+)))
+   

@@ -249,6 +249,7 @@ function(input, output) {
     ggplot(data = stateavg_only, aes(x=state, y = pct_uninsured)) + geom_bar(stat="identity")
   })
   
-}
+} 
+  
 
 
