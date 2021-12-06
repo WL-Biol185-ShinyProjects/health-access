@@ -11,14 +11,14 @@ output$HAdataexplorer <- renderDataTable({
 tabItem(
   tabName ="DataExplorer",
   fluidRow(
-    column(12, dataTableOutput("HAdataexplorer"))
+    column(12, dataTableOutput("HAdataexplorer")),
     
 #Working Data Table - Side tabs - UI
-menuItem("DataExplorer", tabName = "DataExplorer")
+menuItem("DataExplorer", tabName = "DataExplorer"),
 
 #Working Data Table - Server
 output$HAdataexplorer <- renderDataTable (stateavg_only, 
-                                          escape = 1:21)
+                                          escape = 1:21),
 
 # Error for data table 
 DataTables warning: table id=DataTables_Table_0 - Requested unknown parameter '5' for row 0. For more information about this error, please see http://datatables.net/tn/4
@@ -67,8 +67,3 @@ output$trial2 <- renderPlot({
 })
 } 
 
-<<<<<<< HEAD
-#Add scatterplot 
-#
-=======
->>>>>>> 3be97adf0df3ab3d5ab2211ad5e5c60afea63729
