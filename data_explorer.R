@@ -50,7 +50,8 @@ ggplot(mass, aes(x = pct_highschool_completed, y = pct_uninsured))
 #What I deleted from server
 
 output$HAdataexplorer <- renderDataTable (stateavg_only, 
-                                          escape = 1:21)
+                                          escape = 1:21, 
+                                          options = list(columnDefs = list(list(visible=FALSE, targets = 1,3,4))))
 print(stateavg_only)
 
 output$trial <- renderPlot({
