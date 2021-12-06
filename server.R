@@ -288,7 +288,7 @@ function(input, output) {
   })
   
   output$trial2 <- renderPlot({ 
-    ggplot(mass, aes(x = "% Non-Hispanic White", y = num_ratio_primary_cp)) + 
+    ggplot(mass, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp)) + 
       geom_point(size=2, shape = 23) + 
       geom_smooth(method = lm, se = FALSE)
     

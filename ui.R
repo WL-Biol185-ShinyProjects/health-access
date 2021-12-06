@@ -223,13 +223,14 @@ dashboardPage(
     tabItem(
       tabName = "References", 
       fluidRow(
-        plotOutput("trial")
+        plotOutput("trial2")
       )
     ), 
     tabItem(
       tabName ="DataExplorer",
       fluidRow(
-        column(12, dataTableOutput("HAdataexplorer"))
+        column(12, dataTableOutput("HAdataexplorer"), 
+               plotOutput("trial"))
   )
 )
 )
