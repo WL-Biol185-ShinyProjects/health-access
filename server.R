@@ -228,7 +228,9 @@ function(input, output) {
     alfiltered <- al %>% filter(county %in% input$ALDrop)
     ggplot(data = alfiltered, aes_string(y = alfiltered[[input$AL2]], x = "county", fill = alfiltered[[input$AL2]])) +
       geom_bar(stat ="identity", color = "black") +
-      scale_fill_gradient("white", "darkblue") +
+      scale_fill_gradient("white", "darkblue") + 
+      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, and ratio of population to mental health providers on the county level for the state of Alabama. \n 
+           Choose which variable and counties you would want to learn more about.") +
       theme(text = element_text(size = 14))
   })
   
@@ -237,6 +239,7 @@ function(input, output) {
     ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county", fill = filteredcounty[[input$AL2]])) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
+      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Alabama. \nChoose which variable and counties you would want to learn more about.") +
       theme(text = element_text(size = 14))
   })
   
@@ -247,6 +250,7 @@ function(input, output) {
     ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county", fill = filtered[[input$MASS2]])) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
+      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Massachussets \nChoose which variable and counties you would want to learn more about.") +
       theme(text = element_text(size = 14))
   })
   
@@ -255,6 +259,7 @@ function(input, output) {
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
+      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.") +
       theme(text = element_text(size = 14))
   })
   
@@ -264,6 +269,7 @@ function(input, output) {
     ggplot(data = filtered3, aes_string(x="state", y = filtered3[[input$variables]], fill = filtered3[[input$variables]])) +
       geom_bar(stat="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
+      labs(caption = "This graph can compares the data for the % of uninsured patients, ratio of population to primary care providers,\n and ratio of population to mental health providers for all 50 states. \nChoose which variable and which states you would like to compare") +
       theme(text = element_text(size = 14))
   })
   
@@ -271,6 +277,7 @@ function(input, output) {
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
+      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.") +
       theme(text = element_text(size = 14))
   })
   
@@ -284,12 +291,14 @@ function(input, output) {
   output$trial <- renderPlot({
     ggplot(mass, aes(x = pct_highschool_completed, y = pct_uninsured)) +
       geom_point(size = 2, shape = 23 ) + 
+      labs(caption = "This is the caption") +
       geom_smooth(method = lm, se = FALSE)
   })
   
   output$trial2 <- renderPlot({ 
     ggplot(mass, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp)) + 
       geom_point(size=2, shape = 23) + 
+      labs(caption = "This is the caption") +
       geom_smooth(method = lm, se = FALSE)
     
   })
