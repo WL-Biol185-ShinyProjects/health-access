@@ -65,6 +65,7 @@ output$trial2 <- renderPlot({
     geom_smooth(method = lm, se = FALSE)
   
 })
-
-
 } 
+
+#Add scatterplot 
+#
