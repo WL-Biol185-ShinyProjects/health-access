@@ -105,9 +105,11 @@ stargazer(model1, model2, model3, model4, model5, model6, model7, type = "html",
 almodel1<- lm(num_ratio_primary_cp ~ pct_uninsured + county, data = al_combined_data)
 summary(almodel1)
 
-
-
-
-
+newmodel_primarycp <- lm (num_ratio_primary_cp ~ state, data = combined_data)
+newmodel_pctunins <- lm (pct_uninsured ~ state, data = combined_data)
+newmodel_mental<- lm (num_ratio_mental_health ~ state, data = combined_data)
+summary(newmodel_primarycp)
+summary(newmodel_pctunins)
+summary(newmodel_mental)
 
 
