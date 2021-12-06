@@ -101,7 +101,7 @@ function(input, output) {
   maGEO@polygons[which(maGEO@data$STATE != Massachussetts)] <- NULL
   maGEO@data <- madata
   mass<- read_csv("massonly.csv")
-  al <- read_csv("alonly.csv")
+  al<- read_csv("alonly.csv")
   
   #Import data for mass vs al histogram 
   massvsal <- read_csv("mass_al_data.csv")
@@ -224,29 +224,54 @@ function(input, output) {
   })
   
   #Output for Alabama Counties Point Graph
-  output$ALpoint <- renderPlot({
-    ggplot(al, aes(pct_uninsured, county)) + 
-    geom_segment(aes(x = 0, y = county, xend = pct_uninsured, yend = county)) + 
-    geom_point(color = "lightgreen", size = 2)
+  output$ALbar <- renderPlot({
+    alfiltered <- al %>% filter(county %in% input$ALDrop)
+    ggplot(data = alfiltered, aes_string(y = alfiltered[[input$AL2]], x = "county", fill = alfiltered[[input$AL2]])) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") +
+      theme(text = element_text(size = 14))
   })
   
+  output$newBAR <- renderPlot({
+    filteredcounty <- al %>% filter(county %in% input$ALdrop)
+    ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county", fill = filteredcounty[[input$AL2]])) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") +
+      theme(text = element_text(size = 14))
+  })
+  
+  
   #Output for Massachussetts Counties Point Graph
-  output$MASSpoint <- renderPlot({
-    ggplot(mass, aes(pct_uninsured, county)) + 
-      geom_segment(aes(x = 0, y = county, xend = pct_uninsured, yend = county)) + 
-      geom_point(color = "lightgreen", size = 2)
+  output$MASSbar <- renderPlot({
+    filtered <- mass %>% filter(county %in% input$MASSDrop)
+    ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county", fill = filtered[[input$MASS2]])) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") +
+      theme(text = element_text(size = 14))
   })
 
   #Output for AL vs Mass State Bar Graph
   output$ALvsMASS <- renderPlot({
-    ggplot(data = massvsal, aes(x = state, y = pct_uninsured, fill=state)) + 
-    geom_bar(stat ="identity") + theme_minimal() + 
-      scale_fill_brewer(palette = "Dark2")
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]], fill = "state")) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_manual(values = c("steelblue", "lightblue")) +
+      theme(text = element_text(size = 14))
   })
   
   #Output for National STATE bar graph 
   output$STATEbar <- renderPlot({
-    ggplot(data = stateavg_only, aes(x=state, y = pct_uninsured)) + geom_bar(stat="identity")
+    filtered3 <- stateavg_only %>% filter(state %in% input$statechoice)
+    ggplot(data = filtered3, aes_string(x="state", y = filtered3[[input$variables]], fill = filtered3[[input$variables]])) + 
+      geom_bar(stat="identity", color = "black") + 
+      scale_fill_gradient("white", "darkblue") + 
+      theme(text = element_text(size = 14))
+  })
+  
+  output$ALvsMASS2 <- renderPlot({
+    ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]], fill = "state")) + 
+      geom_bar(stat ="identity", color = "black") + 
+      scale_fill_manual(values = c("steelblue", "lightblue")) +
+      theme(text = element_text(size = 14))
   })
   
 } 
