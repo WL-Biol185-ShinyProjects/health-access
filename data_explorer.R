@@ -2,9 +2,9 @@ output$HAdataexplorer <- renderDataTable({
   tidystateavg_only %>%
     select(FIPS, state, county, preventable_hr, pct_uninsured, num_primary_cp, 
            rate_primary_cp, ratio_primary_cp, adult_obesity, pct_highschool_completed, 
-           num_ratio_primary_cp, Population, '% Black', '% American Indian & Alaska Native', 
-           '% Asian', '% Native Hawaiian /Other Pacific Islander', '% Hispanic', 
-           '% Non-Hispanic White', '% Not Proficient in English', Population.1)
+           num_ratio_primary_cp, Population, `% Black`, `% American Indian & Alaska Native`, 
+           `% Asian`, `% Native Hawaiian /Other Pacific Islander`, `% Hispanic`, 
+           `% Non-Hispanic White`, `% Not Proficient in English`)
 })
 
 #Working Data Table - Sixth tab contents - UI
@@ -36,7 +36,7 @@ fluidPage(
       
 # Scatter Plot relating --> num_ratio_primary_cp & % Non-Hispanic White
 # Scatter Plot relationg --> pct_uninsured & pct_highschool_completed
-ggplot(mass, aes(x = "% Non-Hispanic White", y = num_ratio_primary_cp)) 
+ggplot(mass, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp)) 
 + geom_point(size=2, shape = 23)
 + geom_text(label = rownames(county))
 + geom_smooth(method = lm, se = FALSE),
@@ -60,7 +60,7 @@ output$trial <- renderPlot({
 })
 
 output$trial2 <- renderPlot({ 
-  ggplot(mass, aes(x = "% Non-Hispanic White", y = num_ratio_primary_cp)) + 
+  ggplot(mass, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp)) + 
     geom_point(size=2, shape = 23) + 
     geom_smooth(method = lm, se = FALSE)
   
@@ -68,3 +68,4 @@ output$trial2 <- renderPlot({
 
 
 } 
+
