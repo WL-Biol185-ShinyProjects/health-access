@@ -15,6 +15,7 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")),
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),  
       menuItem("National", tabName = "National", icon = icon("map-marked")),
+      menuItem("Socio-Economic Visualizations", tabName = "Socio-EconomicVisualizations"),
       menuItem("References", tabName = "References"), 
       menuItem("DataExplorer", tabName = "DataExplorer")
     )
@@ -176,6 +177,7 @@ dashboardPage(
         )
       ),
       
+      # Fourth tab content
       tabItem(
         tabName = "National",
         fluidRow(
@@ -220,18 +222,31 @@ dashboardPage(
           )
         )
       ),
-    tabItem(
-      tabName = "References", 
-      fluidRow(
-        plotOutput("trial2")
+    
+      # Fifth tab content
+      tabItem(
+        tabName = "Socio-EconomicVisualizations",
+        fluidRow(
+          box(width = 12,
+            tabsetPanel(
+              tabPanel("High School Completition Percentage vs. Percent Uninsured", plotOutput("trial")),
+              tabPanel("Non-Hispanic White Percentage vs. Number of Primary Care Providers", plotOutput("trial2"))
+            )
+          )
+        )
+      ),
+    
+      # Sixth tab content
+      tabItem(
+        tabName = "References"
+      ), 
+    
+      # Seventh tab content
+      tabItem(
+        tabName ="DataExplorer",
+        fluidRow(
+          column(12, dataTableOutput("HAdataexplorer"))
       )
-    ), 
-    tabItem(
-      tabName ="DataExplorer",
-      fluidRow(
-        column(12, dataTableOutput("HAdataexplorer"), 
-               plotOutput("trial"))
-  )
 )
 )
 )
