@@ -274,6 +274,27 @@ function(input, output) {
       theme(text = element_text(size = 14))
   })
   
+#Output for data explorer
+  output$HAdataexplorer <- renderDataTable (stateavg_only, 
+                                            escape = 1:21)
+  print(stateavg_only)
+  
+  
+  #Output for scatterplots
+  output$trial <- renderPlot({
+    ggplot(mass, aes(x = pct_highschool_completed, y = pct_uninsured)) +
+      geom_point(size = 2, shape = 23 ) + 
+      geom_smooth(method = lm, se = FALSE)
+  })
+  
+  output$trial2 <- renderPlot({ 
+    ggplot(mass, aes(x = "% Non-Hispanic White", y = num_ratio_primary_cp)) + 
+      geom_point(size=2, shape = 23) + 
+      geom_smooth(method = lm, se = FALSE)
+    
+  })
+  
+  
 }
 
 

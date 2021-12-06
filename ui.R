@@ -15,7 +15,8 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")),
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),  
       menuItem("National", tabName = "National", icon = icon("map-marked")),
-      menuItem("References", tabName = "References")
+      menuItem("References", tabName = "References"), 
+      menuItem("DataExplorer", tabName = "DataExplorer")
     )
   ),
   
@@ -218,13 +219,21 @@ dashboardPage(
             )
           )
         )
-      )
-    ),
+      ),
     tabItem(
-      tabName = "References"
-    )
+      tabName = "References", 
+      fluidRow(
+        plotOutput("trial")
+      )
+    ), 
+    tabItem(
+      tabName ="DataExplorer",
+      fluidRow(
+        column(12, dataTableOutput("HAdataexplorer"))
   )
 )
-
+)
+)
+)
    
 
