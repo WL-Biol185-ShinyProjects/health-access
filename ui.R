@@ -70,6 +70,10 @@ dashboardPage(
                                           "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                           "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                               selected = 1)
+              ), 
+              box(tags$h2(tags$div(tags$b(tags$u("Massachussets", tags$br(),"Map"))), align = "center"),
+                  width = 12, solidHeader = TRUE, status = "primary",
+                  tags$p("When looking at the map shown on the right, it is easy to see how there is some difference across the different counties for the various variables."),
               )),
             mainPanel(
               box(width = 12, leafletOutput("massachussetsMap", height = "800"))
@@ -88,7 +92,12 @@ dashboardPage(
                                           "Nantucket", "Norfolk", "Plymouth", "Suffolk",
                                           "Worcester"),
                               multiple = TRUE
-                  ))),
+                  )), 
+              box(tags$h2(tags$div(tags$b(tags$u("Massachussets Graphs"))), align = "center"),
+                  width = 12, solidHeader = TRUE, status = "primary",
+                  tags$p("When looking at the graphs shown on the right, it is easier to directly compare counties of interest with the variable selection above.
+                         If the graph is blank, you need to select counties of interest!"),
+              )),
             mainPanel(
               box(width = 12, plotOutput("MASSbar", height = "800")
               )),
@@ -100,7 +109,11 @@ dashboardPage(
                                             "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                             "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
                                 selected = 1
-                    ))),
+                    )), 
+                box(tags$h2(tags$div(tags$b(tags$u("Massachussets" , tags$br(), "vs", tags$br(), "Alabama"))), align = "center"),
+                    width = 12, solidHeader = TRUE, status = "primary",
+                    tags$p("When looking at the graphs shown on the right, you can compare how the state averages for Massachussets compare to those of Alabama for your chosen variable."),
+                )),
               mainPanel(
                 box(width = 12, plotOutput("ALvsMASS", height = "800")
                 )
@@ -124,6 +137,10 @@ dashboardPage(
                                           "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                               selected = 1
                   )
+              ), 
+              box(tags$h2(tags$div(tags$b(tags$u("Alabama", tags$br(),"Map"))), align = "center"),
+                  width = 12, solidHeader = TRUE, status = "primary",
+                  tags$p("When looking at the map shown on the right, it is plain to see how there is some difference across the different counties for the various variables."),
               )
             ),
             mainPanel(
@@ -154,6 +171,11 @@ dashboardPage(
                                             "Tallapoosa", "Tuscaloosa", "Walker", "Washington", "Wilcox",
                                             "Winston"),
                                 multiple = TRUE)
+                ), 
+                box(tags$h2(tags$div(tags$b(tags$u("Alabama Graphs"))), align = "center"),
+                    width = 12, solidHeader = TRUE, status = "primary",
+                    tags$p("When looking at the graphs shown on the right, it is easier to directly compare counties of interest with the variable selection above.
+                           If the graph is blank, you need to select counties of interest!"),
                 )),
               mainPanel(
                 box(width = 12, plotOutput("newBAR", height = "800"))
@@ -168,6 +190,10 @@ dashboardPage(
                                               "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                               "Ratio of Population to Mental Health Providers" = "num_ratio_mental_health"),
                                   selected = 1)
+                  ),
+                  box(tags$h2(tags$div(tags$b(tags$u("Massachussets" , tags$br(), "vs", tags$br(), "Alabama"))), align = "center"),
+                      width = 12, solidHeader = TRUE, status = "primary",
+                      tags$p("When looking at the graphs shown on the right, you can compare how the state averages for Alabama compare to those of Massachussets for your chosen variable."),
                   )),
                 mainPanel(
                   box(width = 12, plotOutput("ALvsMASS2", height = "800"))
@@ -189,6 +215,10 @@ dashboardPage(
                                                       "Ratio of Population to Primary Care Providers" = "num_ratio_primary_cp",
                                                       "Ratio of Population to Mental Health Providers" =  "num_ratio_mental_health"),
                                           selected = 1)
+              ), 
+              box(tags$h2(tags$div(tags$b(tags$u("National", tags$br(),"Map"))), align = "center"),
+                  width = 12, solidHeader = TRUE, status = "primary",
+                  tags$p("When looking at the map shown on the right, it is easy to see how there is a lot of difference across the different states for the various variables."),
               )),
             mainPanel(
               box(width = 12, leafletOutput("Nationmap", height = "800"))
@@ -215,6 +245,11 @@ dashboardPage(
                                             "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
                                             "West Virginia", "Wisconsin", "Wyoming"),
                                 multiple = TRUE)
+                ), 
+                box(tags$h2(tags$div(tags$b(tags$u("State", tags$br(), "Comparison", tags$br(), "Graphs"))), align = "center"),
+                    width = 12, solidHeader = TRUE, status = "primary",
+                    tags$p("When looking at the graphs shown on the right, it is easier to directly compare states of interest with the variable selection above.
+                         If the graph is blank, you need to select states of interest!"),
                 )),
               mainPanel(
                 box(width = 12, plotOutput("STATEbar", height = "800")))
