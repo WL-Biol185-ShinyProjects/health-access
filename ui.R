@@ -218,7 +218,8 @@ dashboardPage(
               ), 
               box(tags$h2(tags$div(tags$b(tags$u("National", tags$br(),"Map"))), align = "center"),
                   width = 12, solidHeader = TRUE, status = "primary",
-                  tags$p("When looking at the map shown on the right, it is easy to see how there is a lot of difference across the different states for the various variables."),
+                  tags$p("When looking at the map shown on the right, it is easy to see how there is a lot of difference across the different states for the various variables. For both percent uninsured and ratio of population to mental health care providers we see a statiscially significant difference based on the state for the vast majority of states.
+                         the equation used regressed lm(formula = pct_uninsured ~ state, data)"),
               )),
             mainPanel(
               box(width = 12, leafletOutput("Nationmap", height = "800"))

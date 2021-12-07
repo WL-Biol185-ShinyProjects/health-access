@@ -117,5 +117,3 @@ statevshighschool <- lm (pct_highschool_completed ~ state, data = combined_data)
 summary(statevshighschool)
 statevshighschoolunins <- lm (pct_uninsured ~ state*pct_highschool_completed, data = combined_data)
 summary(statevshighschoolunins)
-
-
