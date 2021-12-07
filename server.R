@@ -64,9 +64,9 @@ function(input, output) {
       if(input$AL == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$AL == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Primary Care Providers"))
+        labeled<- "Ratio of Population to Primary Care Providers"
       }else if (input$AL == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to", style = "margin-bottom:0px;text-align:center;"), p("Mental Health Care Providers"))
+        labeled<-"Ratio of Population to Mental Health Care Providers"
       }
     }
   )
@@ -88,9 +88,9 @@ function(input, output) {
       if(input$AL2 == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$AL2 == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to Primary Care Providers"))
+        labeled<- paste0("Ratio of Population to Primary Care Providers")
       }else if (input$AL2 == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to Mental Health Care Providers"))
+        labeled<-paste0("Ratio of Population to Mental Health Care Providers")
       }
     }
   )
@@ -100,9 +100,9 @@ function(input, output) {
       if(input$MASS2 == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$MASS2 == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to Primary Care Providers"))
+        labeled<- paste0("Ratio of Population to Primary Care Providers")
       }else if (input$MASS2 == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to Mental Health Care Providers"))
+        labeled<-paste0("Ratio of Population to Mental Health Care Providers")
       }
     }
   )
@@ -110,11 +110,11 @@ function(input, output) {
     {
       req(input$variables)
       if(input$variables == "pct_uninsured"){
-        labeled <- "Percent Uninsured"
+        labeled <- ("Percent Uninsured")
       }else if (input$variables == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to Primary Care Providers"))
+        labeled<- paste0("Ratio of Population to Primary Care Providers")
       }else if (input$variables == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to Mental Health Care Providers"))
+        labeled<-paste0("Ratio of Population to Mental Health Care Providers")
       }
     }
   )
@@ -124,9 +124,9 @@ function(input, output) {
       if(input$VAR2 == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$VAR2 == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to Primary Care Providers"))
+        labeled<- paste0("Ratio of Population to Primary Care Providers")
       }else if (input$VAR2 == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to Mental Health Care Providers"))
+        labeled<-paste0("Ratio of Population to Mental Health Care Providers")
       }
     }
   )
@@ -136,9 +136,9 @@ function(input, output) {
       if(input$VAR3 == "pct_uninsured"){
         labeled <- "Percent Uninsured"
       }else if (input$VAR3 == "num_ratio_primary_cp"){
-        labeled<- paste0(p("Ratio of Population to Primary Care Providers"))
+        labeled<- paste0("Ratio of Population to Primary Care Providers")
       }else if (input$VAR3 == "num_ratio_mental_health"){
-        labeled<-paste0(p("Ratio of Population to Mental Health Care Providers"))
+        labeled<-paste0("Ratio of Population to Mental Health Care Providers")
       }
     }
   )
@@ -300,7 +300,7 @@ function(input, output) {
     ggplot(data = filteredcounty, aes_string(y = filteredcounty[[input$AL2]], x = "county", fill = filteredcounty[[input$AL2]])) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
-      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Alabama. \nChoose which variable and counties you would want to learn more about.", x = "Counties", y = ALgraphlabeled()) +
+      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Alabama. \nChoose which variable and counties you would want to learn more about.", x = "Counties", y = ALgraphlabeled(), title = ALgraphlabeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
   })
   
@@ -311,7 +311,7 @@ function(input, output) {
     ggplot(data = filtered, aes_string(y = filtered[[input$MASS2]], x = "county", fill = filtered[[input$MASS2]])) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
-      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Massachussets \nChoose which variable and counties you would want to learn more about." , x = "Counties", y = MASSgraphlabeled()) +
+      labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Massachussets \nChoose which variable and counties you would want to learn more about." , x = "Counties", y = MASSgraphlabeled(), title = MASSgraphlabeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
   })
   
@@ -320,7 +320,7 @@ function(input, output) {
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
-      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.") +
+      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.", x = "State", y = ALMASSlabeled(), title = ALMASSlabeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
   })
   
@@ -330,14 +330,14 @@ function(input, output) {
     ggplot(data = filtered3, aes_string(x="state", y = filtered3[[input$variables]], fill = filtered3[[input$variables]])) +
       geom_bar(stat="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
-      labs(caption = "This graph can compares the data for the % of uninsured patients, ratio of population to primary care providers,\n and ratio of population to mental health providers for all 50 states. \nChoose which variable and which states you would like to compare", x = "States", y = STATElabeled()) +
+      labs(caption = "This graph can compares the data for the % of uninsured patients, ratio of population to primary care providers,\n and ratio of population to mental health providers for all 50 states. \nChoose which variable and which states you would like to compare", x = "States", y = STATElabeled(), title = STATElabeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
   })
   output$ALvsMASS2 <- renderPlot({
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
-      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.") +
+      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare." , x = "Counties", y = ALMASS2labeled(), title = ALMASS2labeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
   })
   
