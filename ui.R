@@ -12,9 +12,12 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Welcome", tabName = "Welcome"),
-      menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")),
-      menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),  
-      menuItem("National", tabName = "National", icon = icon("map-marked")),
+      menuItem("Massachussets", tabName = "Massachussets", 
+               icon = icon("th-large", lib = "glyphicon")),
+      menuItem("Alabama", tabName = "Alabama", 
+               icon = icon("th-large", lib = "glyphicon")),  
+      menuItem("National", tabName = "National", 
+               icon = icon("map-marked")),
       menuItem("Other Factors: Visualizations", tabName = "Other-Factors-Visualizations"),
       menuItem("Data Explorer", tabName = "DataExplorer"),
       menuItem("References", tabName = "References")
@@ -26,7 +29,8 @@ dashboardPage(
     tabItems(
       # First tab content
       tabItem(tabName = "Welcome",
-              titlePanel(tags$h1(tags$div(tags$b(tags$u("Access to Healthcare in the United States"))), align = "center")),
+              titlePanel(tags$h1(tags$div(tags$b(
+                tags$u("Access to Healthcare in the United States"))), align = "center")),
               br(),
               fluidRow(
                 box(tags$h2(tags$b(tags$u("Goals")), align = "center"), width = 6, 
@@ -279,8 +283,10 @@ dashboardPage(
         fluidRow(
           box(width = 12,
             tabsetPanel(
-              tabPanel("High School Completition Percentage vs. Percent Uninsured", plotOutput("HSvUI"), leafletOutput("statemap", height = "800")),
-              tabPanel("Non-Hispanic White Percentage vs. Ratio of Population to Primary Care Providers", plotOutput("NHWvNPCP"))
+              tabPanel("High School Completition Percentage vs. Percent Uninsured", 
+                       plotOutput("HSvUI"), leafletOutput("statemap", height = "800")),
+              tabPanel("Non-Hispanic White Percentage vs. Ratio of Population to Primary Care Providers", 
+                       plotOutput("NHWvNPCP"))
             )
           )
         )
