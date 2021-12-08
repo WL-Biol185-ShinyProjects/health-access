@@ -366,7 +366,7 @@ function(input, output) {
   output$HSvUI <- renderPlot({
     ggplot(stateavg_only, aes(x = pct_highschool_completed, y = pct_uninsured, label = state)) +
       geom_point(size = 2, shape = 23) + 
-      geom_text(aes(label = state),hjust=0, vjust=0) +
+      geom_text_repel(aes(label = state),hjust=0, vjust=0) +
       labs(caption = "The results of the scatterplot demonstrate a negative correlation between 
            our two factors as the percent of uninsured patients decrease when the percent of high school 
            graduates in the population increase. Education is a social factor that can be used 
