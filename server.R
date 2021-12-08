@@ -150,9 +150,10 @@ function(input, output) {
   
   bystateavgs <- read_csv("bystateavgs.csv")
   stateavg_only <- read_csv("stateavg_only.csv")
-  HAexplore <- read_csv("stateavg_only.csv") #%>%
-  #   rem <- c(1,3,4) %>%
-  #   rem <- NULL
+  HAexplore <- read_csv("stateavg_only.csv")
+  z <- select(HAexplore, 2, 5:21)
+ 
+  
   #Note for later move above function and it will only be slow the first load not every load
   
   
@@ -343,9 +344,9 @@ function(input, output) {
   })
   
 #Output for data explorer
-  output$HAdataexplorer <- renderDataTable (HAexplore, 
-                                            escape = 1:18)
-  print(HAexplore)
+  output$HAdataexplorer <- renderDataTable (z, 
+                                            escape = 1:18) 
+  print(z)
   
   
   #Output for scatterplots
