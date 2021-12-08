@@ -68,3 +68,10 @@ output$trial2 <- renderPlot({
 })
 } 
 
+#Remove columns 
+HAexplore <- read_csv("stateavg_only.csv") 
+z <- select(HAexplore, 2, 5:21)
+
+output$HAdataexplorer <- renderDataTable (z, 
+                                          escape = 1:18) 
+print(z)
