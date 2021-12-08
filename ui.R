@@ -54,7 +54,11 @@ dashboardPage(
                                    "Source of Nationwide and Statewide Health Data")),
                     br(),
                     tags$li(tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/",
-                                   "Acccess to Healthcare during COVID-19")))
+                                   "Acccess to Healthcare during COVID-19")), 
+                    br(),
+                    tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759",
+                                   "American Heart Association - Advancing Healthcare Reforms"))
+                    )
               )),
       
       # Second tab content
@@ -296,11 +300,7 @@ dashboardPage(
               br(), 
               tags$u(h4("AHA Advancing Healthcare Reform")), 
               tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759", 
-                             "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759")),
-              br(), 
-              tags$u(h4("AHA Advancing Healthcare Reform")),
-              tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759", 
-                             "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759")), 
+                             "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759"))
           ))), 
     
       # Sixth tab content
