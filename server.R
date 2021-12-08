@@ -154,7 +154,7 @@ function(input, output) {
   z <- select(HAexplore, 2, 5:21)
  
   
-  #Note for later move above function and it will only be slow the first load not every load
+
   
   
   #Trim data table for counties
