@@ -350,7 +350,7 @@ function(input, output) {
   
   
   #Output for scatterplots
-  output$trial <- renderPlot({
+  output$HSvUI <- renderPlot({
     ggplot(stateavg_only, aes(x = pct_highschool_completed, y = pct_uninsured, label = state)) +
       geom_point(size = 2, shape = 23) + 
       geom_text(aes(label = state),hjust=0, vjust=0) +
@@ -360,7 +360,7 @@ function(input, output) {
       ylab("Percent Uninsured")
   })
   
-  output$trial2 <- renderPlot({ 
+  output$NHWvNPCP <- renderPlot({ 
     ggplot(stateavg_only, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp, label = state)) + 
       geom_point(size=2, shape = 23) + 
       geom_text_repel(aes(label = state),hjust=0, vjust=0) +
