@@ -111,5 +111,9 @@ newmodel_mental<- lm (num_ratio_mental_health ~ state, data = combined_data)
 summary(newmodel_primarycp)
 summary(newmodel_pctunins)
 summary(newmodel_mental)
-
-
+newmodelhs<- lm (pct_uninsured ~ pct_highschool_completed, data = combined_data)
+summary(newmodelhs)
+statevshighschool <- lm (pct_highschool_completed ~ state, data = combined_data)
+summary(statevshighschool)
+statevshighschoolunins <- lm (pct_uninsured ~ state*pct_highschool_completed, data = combined_data)
+summary(statevshighschoolunins)
