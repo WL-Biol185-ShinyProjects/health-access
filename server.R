@@ -355,7 +355,7 @@ function(input, output) {
       geom_point(size = 2, shape = 23) + 
       geom_text(aes(label = state),hjust=0, vjust=0) +
       labs(caption = "The results of the scatterplot demonstrate a negative correlation between 
-           our two factors as the % of uninsured patients decrease when the % of high school 
+           our two factors as the percent of uninsured patients decrease when the percent of high school 
            graduates in the population increase. Education is a social factor that can be used 
            as an indicator when predicting health accessibility. When creating long-term plans 
            to improve health access, education must be considered as well-educated populations 
@@ -371,7 +371,7 @@ function(input, output) {
       geom_point(size=2, shape = 23) + 
       geom_text_repel(aes(label = state),hjust=0, vjust=0) +
       labs(caption = "Based on the data on the scatterplot, there is no strong correlation between
-           the ratio of population to Primary Care Providers and the % of Non-Hispanic White individuals in the state. 
+           the ratio of population to Primary Care Providers and the percent of Non-Hispanic White individuals in the state. 
            While there might be nuances on the county level, on the state level we cannot 
            definitively say whether demographics or race have a strong impact on health 
            accessibility. We may have to examine different data sources to further understand 
