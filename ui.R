@@ -15,7 +15,7 @@ dashboardPage(
       menuItem("Massachussets", tabName = "Massachussets", icon = icon("th-large", lib = "glyphicon")),
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),  
       menuItem("National", tabName = "National", icon = icon("map-marked")),
-      menuItem("Socio-Economic Visualizations", tabName = "Socio-EconomicVisualizations"),
+      menuItem("Other Factors: Visualizations", tabName = "Other-Factors-Visualizations"),
       menuItem("Data Explorer", tabName = "DataExplorer"),
       menuItem("References", tabName = "References")
     )
@@ -275,12 +275,12 @@ dashboardPage(
     
       # Fifth tab content
       tabItem(
-        tabName = "Socio-EconomicVisualizations",
+        tabName = "Other-Factors-Visualizations",
         fluidRow(
           box(width = 12,
             tabsetPanel(
               tabPanel("High School Completition Percentage vs. Percent Uninsured", plotOutput("HSvUI")),
-              tabPanel("Non-Hispanic White Percentage vs. Number of Primary Care Providers", plotOutput("NHWvNPCP"))
+              tabPanel("Non-Hispanic White Percentage vs. Ratio of Population to Primary Care Providers", plotOutput("NHWvNPCP"))
             )
           )
         )
