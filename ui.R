@@ -16,8 +16,8 @@ dashboardPage(
       menuItem("Alabama", tabName = "Alabama", icon = icon("th-large", lib = "glyphicon")),  
       menuItem("National", tabName = "National", icon = icon("map-marked")),
       menuItem("Socio-Economic Visualizations", tabName = "Socio-EconomicVisualizations"),
-      menuItem("References", tabName = "References"), 
-      menuItem("DataExplorer", tabName = "DataExplorer")
+      menuItem("DataExplorer", tabName = "DataExplorer"),
+      menuItem("References", tabName = "References")
     )
   ),
   
