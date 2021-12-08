@@ -27,39 +27,47 @@ dashboardPage(
       # First tab content
       tabItem(tabName = "Welcome",
               titlePanel(tags$h1(tags$div(tags$b(tags$u("Access to Healthcare in the United States"))), align = "center")),
+              br(),
               fluidRow(
-                column(width = 5, box(align = "center", width = 400, solidHeader = TRUE, status = "primary",
-                                      img(src = "https://epsa-online.org/LLeaP/wp-content/uploads/2019/04/access_banner-1920x1008.png",
-                                          height = "225", width = "255"),
-                                      img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg",
-                                          height = "225", width = "255"))),
-                column(width = 7,
-                       box(tags$h2(tags$div(tags$b(tags$u("Goals"))), align = "center"),
-                           width = 12, solidHeader = TRUE, status = "primary",
-                           tags$li("Health care accessibility is a complex topic that is influenced by various socio-economic
-                           factors.The goal of this app is to provide an overview of the percentage of insured adults that
-                           reside in each state and the number of primary physicians available in each state. A state with
-                           relatively high and relatively low healthcare access based on these two factors were also identified.
-                           We analyzed these two states on the county level in an effort to identify trends that may cause
-                           the accessibility gap between these two locations."),
-                           br(),
-                           tags$li("Identifying states and counties with low and healthcare accessibility is the first step
-                           in creating a long-term plan to address this issue. Future analysis can focus on the
-                           causative factors behind these trends. Studying policies and environmental factors within
-                           high healthcare access areas could also help form strategies that can be implemented in low
-                           access areas to improve quality of care."))),
-                box(tags$u(h3(strong("Want to Learn More"))), width = 7, solidHeader = TRUE, status = "primary",
-                    br(),
-                    tags$li(tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation",
-                                   "Source of Nationwide and Statewide Health Data")),
-                    br(),
-                    tags$li(tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/",
-                                   "Acccess to Healthcare during COVID-19")), 
-                    br(),
-                    tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759",
-                                   "American Heart Association - Advancing Healthcare Reforms"))
-                    )
-              )),
+                box(tags$h2(tags$div(tags$b(tags$u("Goals"))), align = "center"),
+                    width = 5, solidHeader = TRUE, status = "primary",
+                    tags$li("Health care accessibility is a complex topic that is influenced by various socio-economic
+                             factors.The goal of this app is to provide an overview of the percentage of insured adults that
+                             reside in each state and the number of primary physicians available in each state. A state with
+                             relatively high and relatively low healthcare access based on these two factors were also identified.
+                             We analyzed these two states on the county level in an effort to identify trends that may cause
+                             the accessibility gap between these two locations.")),
+                box(tags$h2(tags$div(tags$b(tags$u("Why Get Involved"))), align = "center"),
+                        width = 4, solidHeader = TRUE, status = "primary",
+                    tags$li("Identifying states and counties with low and healthcare accessibility is the first step
+                             in creating a long-term plan to address this issue. Future analysis can focus on the
+                             causative factors behind these trends. Studying policies and environmental factors within
+                             high healthcare access areas could also help form strategies that can be implemented in low
+                             access areas to improve quality of care.")),
+                box(width = 3, solidHeader = TRUE, status = "primary",
+                    img(src = "https://epsa-online.org/LLeaP/wp-content/uploads/2019/04/access_banner-1920x1008.png",
+                      height = "203", width = "275"), style="text-align: center;")),
+                fluidRow(box(width = 4, solidHeader = TRUE, status = "primary", 
+                             img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg", 
+                                 height = "180", width = "280"), style="text-align: center;"),
+                         box(tags$u(h3(strong("Why Did We Choose Massachussets and Alabama?")), align = "center"),
+                             width = 4, solidHeader = TRUE, status = "primary",
+                             tags$li("We decided on Massachuettes and Alabama because they have been ranked one
+                                     of the states with the best and worst healthcare systems, respectively. In addition, their
+                                     population sizes were relatively similar."),
+                             br()),
+                        box(tags$u(h3(strong("Want to Learn More"))), width = 4, solidHeader = TRUE, status = "primary",
+                            br(),
+                            tags$li(tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation",
+                                           "Source of Nationwide and Statewide Health Data")),
+                            br(),
+                            tags$li(tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/",
+                                           "Acccess to Healthcare during COVID-19")), 
+                            br(),
+                            tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759",
+                                           "American Heart Association - Advancing Healthcare Reforms"))
+                            ))
+              ),
       
       # Second tab content
       tabItem(
