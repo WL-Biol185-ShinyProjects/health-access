@@ -279,7 +279,7 @@ dashboardPage(
         fluidRow(
           box(width = 12,
             tabsetPanel(
-              tabPanel("High School Completition Percentage vs. Percent Uninsured", plotOutput("HSvUI")),
+              tabPanel("High School Completition Percentage vs. Percent Uninsured", plotOutput("HSvUI"), leafletOutput("statemap", height = "800")),
               tabPanel("Non-Hispanic White Percentage vs. Ratio of Population to Primary Care Providers", plotOutput("NHWvNPCP"))
             )
           )

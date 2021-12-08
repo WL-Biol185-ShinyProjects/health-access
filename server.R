@@ -381,7 +381,36 @@ function(input, output) {
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
     
   })
-  
+  #Output for Nationmap high school      
+  output$statemap <- renderLeaflet({
+    #joining data
+    statesGEO@data<- left_join(statesGEO@data, stateavg_only, by= c("NAME" = "state"))
+    pal<- colorBin("Blues", domain = statesGEO@data$pct_highschool_completed)
+    
+    leaflet(statesGEO) %>%
+      setView(-95, 36.8, 4) %>%
+      addPolygons(weight = 2, opacity = 1, color = "white",
+                  dashArray = "3", fillOpacity = 0.7,
+                  fillColor = ~pal(statesGEO@data$pct_highschool_completed),
+                  highlightOptions = highlightOptions(
+                    weight = 5,
+                    color = "#666",
+                    dashArray = "",
+                    fillOpacity = 0.7,
+                    bringToFront = TRUE),
+                  label = ~paste0(NAME, ": ", formatC(statesGEO@data$pct_highschool_completed))
+      ) %>%
+      addLegend("bottomright",
+                pal = pal,
+                values = ~(statesGEO@data$pct_highschool_completed),
+                opacity = 0.8,
+                title = "Percent of the Population that has completed high school",
+                labFormat = labelFormat(suffix = suffixed())
+                
+      )
+    
+    
+  })
   
 }
 
