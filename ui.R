@@ -32,11 +32,13 @@ dashboardPage(
                 box(tags$h2(tags$div(tags$b(tags$u("Goals"))), align = "center"),
                     width = 5, solidHeader = TRUE, status = "primary",
                     tags$li("Health care accessibility is a complex topic that is influenced by various socio-economic
-                             factors.The goal of this app is to provide an overview of the percentage of insured adults that
-                             reside in each state and the number of primary physicians available in each state. A state with
-                             relatively high and relatively low healthcare access based on these two factors were also identified.
-                             We analyzed these two states on the county level in an effort to identify trends that may cause
-                             the accessibility gap between these two locations.")),
+                             factors.The goal of this app is to provide an overview of the percentage of uninsured adults that
+                             reside in each state, ratio of primary healthcare providers to population, and the ratio of mental health care providers to the population.
+                             We identified a state with relatively high and relatively low healthcare access based on these factors.
+                             We analyzed these two states on the county level in an effort to see if the difference we see in states is also replicated within states at the county level.
+                             After looking at this data, it is clear to see that people who live in different locations have different levels of access to healthcare.
+                             We chose these variables becuase people who are uninsured are likely to not seek out healthcare due to cost unless it is a dire situation (ie. a trip to the emergency room).
+                             If there is a high proportion of population to primary care providers, people will have a harder time getting in to see a healthcare provider. The same applies to mental health providers.")),
                 box(tags$h2(tags$div(tags$b(tags$u("Why Get Involved"))), align = "center"),
                         width = 4, solidHeader = TRUE, status = "primary",
                     tags$li("Identifying states and counties with low and healthcare accessibility is the first step

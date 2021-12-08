@@ -322,7 +322,7 @@ function(input, output) {
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR2]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
-      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.", x = "State", y = ALMASSlabeled(), title = ALMASSlabeled()) +
+      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.", x = "States", y = ALMASSlabeled(), title = ALMASSlabeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
@@ -339,7 +339,7 @@ function(input, output) {
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
-      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare." , x = "Counties", y = ALMASS2labeled(), title = ALMASS2labeled()) +
+      labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare." , x = "States", y = ALMASS2labeled(), title = ALMASS2labeled()) +
       theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
