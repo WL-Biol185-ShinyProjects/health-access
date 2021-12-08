@@ -29,8 +29,8 @@ dashboardPage(
               titlePanel(tags$h1(tags$div(tags$b(tags$u("Access to Healthcare in the United States"))), align = "center")),
               br(),
               fluidRow(
-                box(tags$h2(tags$b(tags$u("Goals")), align = "center"),
-                    width = 6, solidHeader = TRUE, status = "primary",
+                box(tags$h2(tags$b(tags$u("Goals")), align = "center"), width = 6, 
+                    solidHeader = TRUE, status = "primary",
                     tags$li("Health care accessibility is a complex topic that is influenced by various socio-economic
                              factors.The goal of this app is to provide an overview of the percentage of uninsured adults that
                              reside in each state, ratio of primary healthcare providers to population, and the ratio of mental health care providers to the population.
@@ -40,7 +40,7 @@ dashboardPage(
                              We chose these variables becuase people who are uninsured are likely to not seek out healthcare due to cost unless it is a dire situation (ie. a trip to the emergency room).
                              If there is a high proportion of population to primary care providers, people will have a harder time getting in to see a healthcare provider. The same applies to mental health providers.")),
                 box(br(),tags$h2(tags$b(tags$u("Future Applications")), align = "center"),
-                        width = 3, solidHeader = TRUE, status = "primary",
+                    width = 3, solidHeader = TRUE, status = "primary",
                     tags$li("Identifying states and counties with low and healthcare accessibility is the first step
                              in creating a long-term plan to address this issue. Future analysis can focus on the
                              causative factors behind these trends. Studying policies and environmental factors within
@@ -48,27 +48,27 @@ dashboardPage(
                              access areas to improve quality of care."), br()),
                 box(width = 3, solidHeader = TRUE, status = "primary",
                     img(src = "https://epsa-online.org/LLeaP/wp-content/uploads/2019/04/access_banner-1920x1008.png",
-                      height = "283", width = "276"), style="text-align: center;")),
-                fluidRow(box(width = 3, solidHeader = TRUE, status = "primary", 
-                             img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg", 
-                                 height = "180", width = "280"), style="text-align: center;"),
-                         box(tags$u(h2(strong("Why Did We Choose Massachussets and Alabama?")), align = "center"),
-                             width = 5, solidHeader = TRUE, status = "primary",
-                             br(),
-                             tags$li("We decided on Massachuettes and Alabama because they have been ranked one
-                                     of the states with the best and worst healthcare systems, respectively. In addition, their
-                                     population sizes were relatively similar.")),
-                        box(tags$u(h2(strong("Want to Learn More")), align = "center"), width = 4, solidHeader = TRUE, status = "primary",
-                            br(),
-                            tags$li(tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation",
-                                           "Source of Nationwide and Statewide Health Data")),
-                            br(),
-                            tags$li(tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/",
-                                           "Acccess to Healthcare during COVID-19")), 
-                            br(),
-                            tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759",
-                                           "American Heart Association - Advancing Healthcare Reforms"))
-                            ))
+                        height = "283", width = "276"), style="text-align: center;")),
+              fluidRow(
+                box(width = 3, solidHeader = TRUE, status = "primary", 
+                    img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg", 
+                         height = "180", width = "280"), style="text-align: center;"),
+                box(tags$u(h2(strong("Why Did We Choose Massachussets and Alabama?")), align = "center"),
+                    width = 5, solidHeader = TRUE, status = "primary", br(),
+                    tags$li("We decided on Massachuettes and Alabama because they have been ranked one
+                             of the states with the best and worst healthcare systems, respectively. In addition, their
+                             population sizes were relatively similar.")),
+                box(tags$u(h2(strong("Want to Learn More")), align = "center"), 
+                    width = 4, solidHeader = TRUE, status = "primary", br(),
+                    tags$li(tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation",
+                                   "Source of Nationwide and Statewide Health Data")),
+                    br(),
+                    tags$li(tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/",
+                                   "Acccess to Healthcare during COVID-19")), 
+                    br(),
+                    tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759",
+                                   "American Heart Association - Advancing Healthcare Reforms"))
+                    ))
               ),
       
       # Second tab content
