@@ -148,7 +148,7 @@ function(input, output) {
   alGEO <- rgdal::readOGR("testing.json")
   statesGEO <- rgdal::readOGR("states.geo.json")
   
-  bystateavgs <- read_csv("bystateavgs.csv")
+ 
   stateavg_only <- read_csv("stateavg_only.csv")
   HAexplore <- read_csv("stateavg_only.csv")
   z <- select(HAexplore, 2, 5:21)
