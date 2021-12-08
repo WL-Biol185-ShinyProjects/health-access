@@ -294,7 +294,7 @@ function(input, output) {
       scale_fill_gradient("white", "darkblue") + 
       labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, and ratio of population to mental health providers on the county level for the state of Alabama. \n 
            Choose which variable and counties you would want to learn more about.", xlab = "Counties", ylab = ALlabeled()) +
-      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
   output$newBAR <- renderPlot({
@@ -303,7 +303,7 @@ function(input, output) {
       geom_bar(stat ="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
       labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Alabama. \nChoose which variable and counties you would want to learn more about.", x = "Counties", y = ALgraphlabeled(), title = ALgraphlabeled()) +
-      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
   
@@ -314,7 +314,7 @@ function(input, output) {
       geom_bar(stat ="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
       labs(caption = "This graph can show the data for the % of uninsured patients, ratio of population to primary care providers, \n and ratio of population to mental health providers on the county level for the state of Massachussets \nChoose which variable and counties you would want to learn more about." , x = "Counties", y = MASSgraphlabeled(), title = MASSgraphlabeled()) +
-      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
   #Output for AL vs Mass State Bar Graph
@@ -323,7 +323,7 @@ function(input, output) {
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
       labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare.", x = "State", y = ALMASSlabeled(), title = ALMASSlabeled()) +
-      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
   #Output for National STATE bar graph
@@ -333,14 +333,14 @@ function(input, output) {
       geom_bar(stat="identity", color = "black") +
       scale_fill_gradient("white", "darkblue") +
       labs(caption = "This graph can compares the data for the % of uninsured patients, ratio of population to primary care providers,\n and ratio of population to mental health providers for all 50 states. \nChoose which variable and which states you would like to compare", x = "States", y = STATElabeled(), title = STATElabeled()) +
-      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   output$ALvsMASS2 <- renderPlot({
     ggplot(data = massvsal, aes_string(x = "state", y = massvsal[[input$VAR3]], fill = "state")) +
       geom_bar(stat ="identity", color = "black") +
       scale_fill_manual(values = c("steelblue", "lightblue")) +
       labs(caption = "This graph can compare the data for the % of uninsured patients, ratio of population to primary care providers, \nand ratio of population to mental health providers between our two target states, Alabama and Massachusetts. \nChoose the variable you want to compare." , x = "Counties", y = ALMASS2labeled(), title = ALMASS2labeled()) +
-      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5), plot.title = element_text(hjust = 0.5))
   })
   
 #Output for data explorer
@@ -362,7 +362,8 @@ function(input, output) {
            tend to have more insurance coverage.  ") +
       geom_smooth(method = lm, se = FALSE) +
       xlab("Percent of Individuals who Have Completed High School") +
-      ylab("Percent Uninsured")
+      ylab("Percent Uninsured") +
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
   })
   
   output$NHWvNPCP <- renderPlot({ 
@@ -376,7 +377,8 @@ function(input, output) {
            accessibility. We may have to examine different data sources to further understand 
            this aspect of health accessibility.  ") +
       xlab("Percent of Non-Hispanic White Reported in the U.S. Census (%)") +
-      ylab("Number of Primary Care Providers")
+      ylab("Number of Primary Care Providers") +
+      theme(text = element_text(size = 14), plot.caption = element_text(hjust = 0.5))
     
   })
   
