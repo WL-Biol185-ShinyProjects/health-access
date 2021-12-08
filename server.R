@@ -7,6 +7,7 @@ library(htmltools)
 library(rgdal)
 library(tidyverse)
 library(readr)
+library(ggrepel)
 
 
 function(input, output) {
@@ -349,17 +350,22 @@ function(input, output) {
   
   #Output for scatterplots
   output$trial <- renderPlot({
-    ggplot(mass, aes(x = pct_highschool_completed, y = pct_uninsured)) +
-      geom_point(size = 2, shape = 23 ) + 
+    ggplot(stateavg_only, aes(x = pct_highschool_completed, y = pct_uninsured, label = state)) +
+      geom_point(size = 2, shape = 23) + 
+      geom_text(aes(label = state),hjust=0, vjust=0) +
       labs(caption = "This is the caption") +
-      geom_smooth(method = lm, se = FALSE)
+      geom_smooth(method = lm, se = FALSE) +
+      xlab("Percent of Individuals who Have Completed High School") +
+      ylab("Percent Uninsured")
   })
   
   output$trial2 <- renderPlot({ 
-    ggplot(mass, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp)) + 
+    ggplot(stateavg_only, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp, label = state)) + 
       geom_point(size=2, shape = 23) + 
+      geom_text_repel(aes(label = state),hjust=0, vjust=0) +
       labs(caption = "This is the caption") +
-      geom_smooth(method = lm, se = FALSE)
+      xlab("Percent of Non-Hispanic White Reported in the U.S. Census (%)") +
+      ylab("Number of Primary Care Providers")
     
   })
   
