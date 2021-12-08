@@ -354,7 +354,12 @@ function(input, output) {
     ggplot(stateavg_only, aes(x = pct_highschool_completed, y = pct_uninsured, label = state)) +
       geom_point(size = 2, shape = 23) + 
       geom_text(aes(label = state),hjust=0, vjust=0) +
-      labs(caption = "This is the caption") +
+      labs(caption = "The results of the scatterplot demonstrate a negative correlation between 
+           our two factors as the % of uninsured patients decrease when the % of high school 
+           graduates in the population increase. Education is a social factor that can be used 
+           as an indicator when predicting health accessibility. When creating long-term plans 
+           to improve health access, education must be considered as well-educated populations 
+           tend to have more insurance coverage.  ") +
       geom_smooth(method = lm, se = FALSE) +
       xlab("Percent of Individuals who Have Completed High School") +
       ylab("Percent Uninsured")
@@ -364,7 +369,12 @@ function(input, output) {
     ggplot(stateavg_only, aes(x = `% Non-Hispanic White`, y = num_ratio_primary_cp, label = state)) + 
       geom_point(size=2, shape = 23) + 
       geom_text_repel(aes(label = state),hjust=0, vjust=0) +
-      labs(caption = "This is the caption") +
+      labs(caption = "Based on the data on the scatterplot, there is no strong correlation between
+           the # Primary Care Providers and the % of Non-Hispanic White individuals in the state. 
+           While there might be nuances on the county level, on the state level we cannot 
+           definitively say whether demographics or race have a strong impact on health 
+           accessibility. We may have to examine different data sources to further understand 
+           this aspect of health accessibility.  ") +
       xlab("Percent of Non-Hispanic White Reported in the U.S. Census (%)") +
       ylab("Number of Primary Care Providers")
     
