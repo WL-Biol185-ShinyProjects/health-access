@@ -33,37 +33,40 @@ dashboardPage(
                 tags$u("Access to Healthcare in the United States"))), align = "center")),
               br(),
               fluidRow(
-                box(tags$h2(tags$b(tags$u("Goals")), align = "center"), width = 5, height  = 410,
+                box(tags$u(h2(strong("Goals")), align = "center"), width = 12, background = "navy",
                     solidHeader = TRUE, status = "primary",
-                    tags$li("Health care accessibility is a complex topic that is influenced by various socio-economic
+                    tags$p("Health care accessibility is a complex topic that is influenced by various socio-economic
                              factors.The goal of this app is to provide an overview of the percentage of uninsured adults that
                              reside in each state, ratio of primary healthcare providers to population, and the ratio of mental health care providers to the population.
                              We identified a state with relatively high and relatively low healthcare access based on these factors.
                              We analyzed these two states on the county level in an effort to see if the difference we see in states is also replicated within states at the county level.
                              After looking at this data, it is clear to see that people who live in different locations have different levels of access to healthcare.
                              We chose these variables becuase people who are uninsured are likely to not seek out healthcare due to cost unless it is a dire situation (ie. a trip to the emergency room).
-                             If there is a high proportion of population to primary care providers, people will have a harder time getting in to see a healthcare provider. The same applies to mental health providers.")),
-                box(br(),tags$h2(tags$b(tags$u("Future Applications")), align = "center"),
-                    width = 4, solidHeader = TRUE, status = "primary", height  = 410,
-                    tags$li("Identifying states and counties with low and healthcare accessibility is the first step
+                             If there is a high proportion of population to primary care providers, people will have a harder time getting in to see a healthcare provider. The same applies to mental health providers.",
+                    align = "center")),
+                box(tags$u(h2(strong("Future Applications")), align = "center"),
+                    width = 6, height = 250, background = "blue", solidHeader = TRUE, status = "primary", br(),br(),
+                    tags$p("Identifying states and counties with low and healthcare accessibility is the first step
                              in creating a long-term plan to address this issue. Future analysis can focus on the
                              causative factors behind these trends. Studying policies and environmental factors within
                              high healthcare access areas could also help form strategies that can be implemented in low
-                             access areas to improve quality of care."), br()),
-                box(width = 3, solidHeader = TRUE, status = "primary",height  = 410,
+                             access areas to improve quality of care.",
+                           align ="center"), br()),
+                box(width = 6, height = 250, background = "blue", solidHeader = TRUE, status = "primary",
                     img(src = "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg",
-                        height = "180", width = "260"), style="text-align: center;")),
+                        height = "220", width = "400"), style="text-align: center;")),
               fluidRow(
-                box(width = 4, solidHeader = TRUE, status = "primary", 
+                box(width = 6, height = 250, background = "teal", solidHeader = TRUE, status = "primary", 
                     img(src = "https://epsa-online.org/LLeaP/wp-content/uploads/2019/04/access_banner-1920x1008.png", 
-                         height = "180", width = "280"), style="text-align: center;"),
+                         height = "220", width = "400"), style="text-align: center;"),
                 box(tags$u(h2(strong("Why Did We Choose Massachussets and Alabama?")), align = "center"),
-                    width = 5, solidHeader = TRUE, status = "primary", br(),
-                    tags$li("We decided on Massachuettes and Alabama because they have been ranked one
+                    width = 6, height = 250, background = "teal", solidHeader = TRUE, status = "primary", br(), br(), 
+                    tags$p("We decided on Massachuettes and Alabama because they have been ranked one
                              of the states with the best and worst healthcare systems, respectively. In addition, their
-                             population sizes were relatively similar.")),
+                             population sizes were relatively similar.", 
+                           align = "center")),
                 box(tags$u(h2(strong("Want to Learn More")), align = "center"), 
-                    width = 3, solidHeader = TRUE, status = "primary", br(),
+                    width = 6, height = 250, solidHeader = TRUE, status = "primary", br(),
                     tags$li(tags$a(href="https://www.countyhealthrankings.org/explore-health-rankings/rankings-data-documentation",
                                    "Source of Nationwide and Statewide Health Data")),
                     br(),
@@ -72,7 +75,11 @@ dashboardPage(
                     br(),
                     tags$li(tags$a(href="https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000759",
                                    "American Heart Association - Advancing Healthcare Reforms"))
-                    ))
+                    ),
+                box(width = 6, height = 250, solidHeader = TRUE, status = "primary", 
+                    img(src = "https://mffh.org/wp-content/uploads/2018/09/Access.png",
+                        height = "240", width = "400"), style="text-align: center;")
+              )
               ),
       
       # Second tab content
@@ -310,6 +317,10 @@ dashboardPage(
               tags$li(tags$a(href="https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg", 
                              "https://medcitynews.com/wp-content/uploads/2017/02/GettyImages-109420355-1.jpg")),
               br(), 
+             tags$u(h4("Welcome Page Image 3 Source")), 
+             tags$li(tags$a(href="https://mffh.org/wp-content/uploads/2018/09/Access.png", 
+                            "https://mffh.org/wp-content/uploads/2018/09/Access.png")),
+             br(),
               tags$u(h4("Access to Healthcare During COVID-19")), 
               tags$li(tags$a(href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/", 
                              "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7999346/")),
